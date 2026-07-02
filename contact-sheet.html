@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>סקירת תמונות</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f3f4f6;
+      color: #111;
+      font-family: Arial, sans-serif;
+    }
+    .wrap {
+      padding: 16px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      direction: ltr;
+    }
+    .card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #d6dbe3;
+      border-radius: 8px;
+      background: white;
+      min-height: 180px;
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      background: #e8ebef;
+    }
+    .num {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #111;
+      color: white;
+      font-weight: 800;
+      font-size: 15px;
+    }
+    .label {
+      padding: 6px 8px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap" id="wrap"></main>
+  <script>
+    const ids = [
+      "15b7Rs4EnAlzsjrExOvEQXApVcIGqarZ4",
+      "1mJerSQyP99V_n2iOUoQsbg62rwDEnw2i",
+      "1ib8JZWlFzwVIcXwl0K3VKmLz6XgVCcUE",
+      "1Oh_XUBW9djdxeSZFsugUd8sIMfjn5lKA",
+      "1ZuDSFXhpuaGDfy9HnGfVl2FOAbFUEv8e",
+      "17atQ7iq5I2jYgm8WXtfvq7zfZfdxNp-U",
+      "1MYeJ-f5P4IYdV_A8QLUXoeVnsfPlFSC7",
+      "1ID_nSqYRdeGVFWAVwnTEE47F6WhIU6CS",
+      "15TCRzqbc_h5T_MEFisEUksF6crBNzNTO",
+      "1tV2V6VUx0pN0VzIWfrV6eBOV-ERs-X46",
+      "1-G6uzpMyPcVB4AAOGDfenysAe2E_5sID",
+      "1mpflRqYRToSXXRKXu7n9babhITWbN1o6",
+      "1cEt5MdLkiwMk5rROMr5H3GcfKp5P7aOW",
+      "1-svwiUmXuJ1q-9PfbKeGV2eNMo1QyOrh",
+      "1B4biQTo2v9oKGggpM_HuT7kU6WUN2ZD1",
+      "1958onuhDTBNVfliwBRqm_xLbcFJCj3jD",
+      "1Uczh5QIlpJ8HUFZ7Wbz1Y8eaK-ZSJ0a1",
+      "1k9tu-tG5HH7Xzf8eR2iURKYs8Ipop5mm",
+      "1Sai-j1dl4ZwzoL0NGz_Dl-CRtQqar6LH",
+      "1T4xBQqfF2yyZeWcNqzy4bsjFbtR9Fx79",
+      "12vfamhpLBhKBfulelm9kNsKVgcSnYn_c",
+      "1-SUhZUitL-lK55kBZVS47U-ImN_yDJ9p",
+      "1jjzgL35V5gXFzQ3gKUqKXuGb_PUCFzH6",
+      "1jAyHrp6SWzj35Su1QWKAOAR_SaTmjbGZ",
+      "1ZQtXMAkWzUp51bbRt53q-FvSxloZCcB1",
+      "1qbVDK_lCymazJx1UU0ilGpi3v5rPXY3k",
+      "1hYVtU3oAYlt7xk9HoD24vSl6bQQ7K5SD",
+      "12ys2Gv15Hxc-kOCrIQYU4VIOK0gPi8na",
+      "1AT3vRVsypCShiWfJp6HGbkfnCVu5ICCA",
+      "11sG2WLlRozZBU0o3uYRt3wjJ85vGsI5J",
+      "1R4IxhrPNk__PdvcbEkX9MR8DhgBrdWfI",
+      "1Isotl3fGsM8JzbchMYC17C-9jxya8Bo2",
+      "1e4h48noZSK2GTPsRb2BSn0R-Q-O_ijYZ",
+      "1EXVC7QGHWSM1IbmE6e50JImCKHrgSbcs",
+      "1X4yAhLjHqzpLrngRIVtU5dPjC_gnwqXs",
+      "11qcijEU6Lw70BfTvBmGFD2bBCjvjHyK6",
+      "1fUxIP7Cex-uSNc4__owDY0i3y08tMaOY",
+      "16nTPCdr8b5YTnVoyNYpa__Nouyl6otm7",
+      "17JNNcLL1_kZdyQpaWRaQkChW3kJsjCis",
+      "1dM6leFOp9UB38czENDBckm9SUIL8nnQ7",
+      "1ghq2nvG8jA_XmfqvoTmOP1hG3poOA0yE",
+      "1IPcsIL80BQFwQD6cDXavDAYsDDQakt2y",
+      "1i6vnGlCJ50pa0k2z1KPDpXMjnvcd6LkE",
+      "1wiNpoKbl9LZ6Dkv_h7MmwIpzNS80vhnJ",
+      "1FOOY7Rg9Lrx_xd5p0Wjf_HgBP11WtpbD",
+      "1QiSt7ZgocsoawGixKik6rRZM3xOyQXuA",
+      "1AJMBGcaBqUlTvi4jKCNCLIOUy_dkjnmQ",
+      "1EdOSQa9LlOIyp4-x8P2zDjw-3vgo1EEF",
+      "1mU8KFfP_MsM0ekhYk_sw5Ih2Jm4IqYkH",
+      "1I_DPl525VtfLgb3AbX1BthQmiW3S5Ydw",
+      "1O5Hr0OFfzs3AKCrxJO9H3RBG47WYEC8l",
+      "1gzCc1MUFGOzTM0H9Gn-ZPlxAMQrV4Xg3",
+      "15g6QbI1Atcrup3F2Zi3u_stYXTdc6YoS",
+      "1xXhC3jCIzMRceEQWpquqwr-hRAV84tjM",
+      "1qS0c1yBmclFOSakfM7pM6T-XryILuagi",
+      "1oyp5UE-iqohpn2qT9tSJND0-Xv_um5oX",
+      "1UZ_pXayPIdLi73QY6Xvmu8nDSYuwnFZO",
+      "1QETtR7HcgwY3TbVqgDWQ80V5xcfaoBKf",
+      "1t0xOTFNEa4d9t4ypDNRdfqDH5dp_SzVY",
+      "1fNN6XdDcMcCknjhkmbbyGopPuRC8qDJ-"
+    ];
+
+    document.querySelector("#wrap").innerHTML = ids.map((id, index) => `
+      <article class="card">
+        <span class="num">${index + 1}</span>
+        <img src="https://drive.google.com/thumbnail?id=${id}&sz=w700" alt="פריט ${index + 1}">
+        <div class="label">פריט ${String(index + 1).padStart(2, "0")}</div>
+      </article>
+    `).join("");
+  </script>
+</body>
+</html>
