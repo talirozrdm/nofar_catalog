@@ -207,6 +207,48 @@
       scrollbar-width: thin;
     }
 
+    .helper-link {
+      justify-self: start;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 40px;
+      width: fit-content;
+      padding: 0 15px;
+      border: 1px solid rgba(8, 127, 122, .46);
+      border-radius: 999px;
+      background: #e4f4ef;
+      color: var(--teal-dark);
+      text-decoration: none;
+      font-weight: 900;
+      transition: background-color .18s ease, border-color .18s ease, color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+
+    .helper-link:hover {
+      border-color: var(--teal);
+      background: var(--teal);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(8, 127, 122, .18);
+      transform: translateY(-1px);
+    }
+
+    .helper-link:focus-visible {
+      outline: 3px solid rgba(8, 127, 122, .42);
+      outline-offset: 3px;
+    }
+
+    .helper-link span {
+      display: inline-grid;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--teal-dark);
+      font-weight: 900;
+    }
+
     .chip {
       flex: 0 0 auto;
       min-height: 40px;
@@ -281,54 +323,6 @@
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 15px;
       align-items: stretch;
-    }
-
-    .band {
-      margin: 0 0 26px;
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: 0 8px 24px rgba(20, 28, 38, .05);
-    }
-
-    .band h2 {
-      margin: 0 0 6px;
-      font-size: 1.24rem;
-    }
-
-    .band p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .combo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .combo {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fafbfc;
-      padding: 12px;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      gap: 8px;
-      align-content: start;
-      min-height: 154px;
-    }
-
-    .combo strong {
-      font-size: .98rem;
-    }
-
-    .combo span {
-      color: var(--muted);
-      font-size: .88rem;
-      overflow-wrap: anywhere;
     }
 
     .band-cta,
@@ -1290,18 +1284,15 @@
         <h2 id="filterTitle">סינון לפי קטגוריה</h2>
         <p>בחרו קטגוריה כדי לסנן את המוצרים בקטלוג</p>
         <nav class="filters" id="filters" aria-label="סינון לפי קטגוריה"></nav>
+        <a class="helper-link" href="packages/" aria-label="מעבר לעמוד חבילות מוצעות">
+          <span aria-hidden="true">?</span>
+          לא יודעים מה לבחור?
+        </a>
       </section>
     </div>
   </header>
 
   <main>
-    <section class="band">
-      <h2>לא בטוחים מה לבחור? הנה שילובים שעובדים טוב</h2>
-      <p>אפשר לבחור מוצר בודד, או להתחיל משילוב מוכן ונופר תבנה ממנו פתרון שמתאים לקהל, למיקום ולתקציב.</p>
-      <div class="combo-grid" id="comboGrid"></div>
-      <button class="band-cta" type="button" id="comboCta" aria-label="העתקת בקשה לבניית שילוב מתאים">רוצים שנבנה לכם שילוב מתאים?</button>
-    </section>
-
     <div class="section-title">
       <h2 id="activeTitle">כל המוצרים</h2>
       <div class="section-actions">
@@ -1979,12 +1970,12 @@
     let leadDraft = JSON.parse(localStorage.getItem("catalogLeadDraft") || "{}");
 
     const combos = [
-      { id: "kids-classic", title: "אירוע ילדים קלאסי", items: "ארנת ספורט מתנפחת + מכונת פופקורן + מכונת ברד" },
-      { id: "mitzvah-energy", title: "בר/בת מצווה אנרגטי", items: "פעילות זוהרת / פול מון + עמדות מולטימדיה לאירועים + תותח קצף" },
-      { id: "community-event", title: "אירוע קהילה", items: "מכונת נקניקיות + צ'יפסר חשמלי + פינות ישיבה" },
-      { id: "company-light", title: "אירוע חברה קליל", items: "משחקי שולחן ו-ODT + שולחן סנוקר + דוכן פיצות / פוקאצ'ות" },
-      { id: "sweet-zone", title: "מתחם מתוקים", items: "מכונת מפל שוקולד + מכונת וופל בלגי מקצועית + עמדת קרפ צרפתי" },
-      { id: "team-competition", title: "יום גיבוש תחרותי", items: "מכונת אגרוף ארקייד + שולחן כדורגל STORM + שולחן הוקי אויר" }
+      { id: "kids-classic", title: "אירוע ילדים קלאסי", description: "פתרון שמח וברור לילדים עם פעילות מרכזית ודוכני נשנוש אהובים.", items: "ארנת ספורט מתנפחת + מכונת פופקורן + מכונת ברד" },
+      { id: "mitzvah-energy", title: "בר/בת מצווה אנרגטי", description: "חבילה צבעונית וקצבית לבני נוער, עם צילום, משחקים ורגעי שיא ברחבה.", items: "פעילות זוהרת / פול מון + עמדות מולטימדיה לאירועים + תותח קצף" },
+      { id: "community-event", title: "אירוע קהילה", description: "שילוב נוח לאירוע פתוח עם אוכל מהיר, אזור ישיבה ותחושת יריד קהילתי.", items: "מכונת נקניקיות + צ'יפסר חשמלי + פינות ישיבה" },
+      { id: "company-light", title: "אירוע חברה קליל", description: "מסלול חברתי ולא מחייב לעובדים, עם משחקים, אוכל ואווירה קלילה.", items: "משחקי שולחן ו-ODT + שולחן סנוקר + דוכן פיצות / פוקאצ'ות" },
+      { id: "sweet-zone", title: "מתחם מתוקים", description: "מתחם קינוחים חם ומצטלם שמתאים לקבלות פנים, ילדים ואירועי חברה.", items: "מכונת מפל שוקולד + מכונת וופל בלגי מקצועית + עמדת קרפ צרפתי" },
+      { id: "team-competition", title: "יום גיבוש תחרותי", description: "חבילה תחרותית ליום גיבוש עם עמדות משחק שמפעילות את הקהל.", items: "מכונת אגרוף ארקייד + שולחן כדורגל STORM + שולחן הוקי אויר" }
     ];
     let selectedCombos = new Set(JSON.parse(localStorage.getItem("catalogComboSelection") || "[]"));
     selectedProducts = new Set([...selectedProducts].filter((id) => products.some((product) => product.id === id)));
@@ -1996,6 +1987,12 @@
 
     function saveSelection() {
       localStorage.setItem("catalogLeadSelection", JSON.stringify([...selectedProducts]));
+      localStorage.setItem("catalogSelectedProductDetails", JSON.stringify(selectedItems().map((product) => ({
+        id: product.id,
+        name: product.name,
+        category: product.displayCategory || categoryLabels[product.category],
+        tags: product.tags
+      }))));
     }
 
     function saveComboSelection() {
@@ -2084,7 +2081,8 @@
       const comboHtml = selectedComboList.map((combo) => `
         <article class="selected-item" data-combo-id="${combo.id}">
           <div class="selected-item-details">
-            <strong>שילוב מעניין: ${combo.title}</strong>
+            <strong>חבילה מבוקשת: ${combo.title}</strong>
+            <span>${combo.description}</span>
             <span>כולל: ${combo.items}</span>
           </div>
           <button class="remove-choice" type="button" data-remove-combo="${combo.id}" aria-label="הסרת ${combo.title} מהבחירות">הסרה</button>
@@ -2130,19 +2128,11 @@
         ].join("\n");
       }
 
-      const choiceLines = [
-        ...selectedComboList.map((combo) => `- ${combo.title}: ${combo.items}`),
-        ...selected.map((product) => `- ${product.name}`)
-      ];
-      const choices = choiceLines.length
-        ? choiceLines.join("\n")
-        : "- אשמח להתייעץ על התאמת ציוד / אטרקציות לאירוע";
+      const packageLines = selectedComboList.map((combo) => `- ${combo.title}: ${combo.items}`);
+      const productLines = selected.map((product) => `- ${product.name}`);
       return [
         "שלום נופר הפקות,",
         "אשמח לקבל הצעת מחיר לאירוע.",
-        "",
-        "הבחירות שלי לאירוע:",
-        choices,
         "",
         "פרטי האירוע:",
         `שם: ${leadFields.name.value.trim()}`,
@@ -2151,6 +2141,12 @@
         `מיקום האירוע: ${leadFields.location.value.trim()}`,
         `סוג האירוע: ${leadFields.type.value.trim()}`,
         `כמות משתתפים: ${leadFields.guests.value.trim()}`,
+        "",
+        "חבילה מבוקשת:",
+        packageLines.length ? packageLines.join("\n") : "לא נבחרה חבילה",
+        "",
+        "מוצרים שנבחרו:",
+        productLines.length ? productLines.join("\n") : "לא נבחרו מוצרים",
         "",
         "הערות / בקשות מיוחדות:",
         leadFields.notes.value.trim(),
@@ -2174,12 +2170,14 @@
     }
 
     function renderCombos() {
+      if (!comboGrid) return;
       comboGrid.replaceChildren(...combos.map((combo) => {
         const selected = selectedCombos.has(combo.id);
         const card = document.createElement("article");
         card.className = "combo";
         card.innerHTML = `
           <strong>${combo.title}</strong>
+          <span>${combo.description}</span>
           <span>${combo.items}</span>
           <button class="band-cta" type="button">${selected ? "נוסף ✓" : "לבקש שילוב כזה"}</button>
         `;
@@ -2197,7 +2195,7 @@
         selectedCombos.add(comboId);
         showToast("השילוב נוסף לבחירות שלך");
       } else {
-        showToast("השילוב כבר נמצא בבחירות שלי");
+        showToast("החבילה כבר נמצאת בבחירות שלי");
       }
       saveComboSelection();
       renderSelection();
@@ -2309,7 +2307,7 @@
         return;
       }
       const selectedNames = [
-        ...selectedComboList.map((combo) => `שילוב: ${combo.title}`),
+        ...selectedComboList.map((combo) => `חבילה: ${combo.title}`),
         ...selected.map((product) => product.name)
       ];
       trayText.innerHTML = `<strong>${count} בחירות לאירוע:</strong> ${selectedNames.join(", ")}`;
@@ -2411,7 +2409,7 @@
       showToast("בחרו מוצרים ואז פתחו את הבחירות שלי");
     });
 
-    comboCta.addEventListener("click", () => {
+    comboCta?.addEventListener("click", () => {
       showToast("בחרו מוצרים ואז פתחו את הבחירות שלי");
     });
 
