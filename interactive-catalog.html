@@ -175,31 +175,72 @@
       white-space: nowrap;
     }
 
+    .filter-panel {
+      display: grid;
+      gap: 12px;
+      margin: 2px 0 4px;
+      padding: 16px;
+      border: 1px solid rgba(8, 127, 122, .22);
+      border-radius: 8px;
+      background: #f3faf8;
+    }
+
+    .filter-panel h2 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 1.05rem;
+      line-height: 1.25;
+    }
+
+    .filter-panel p {
+      margin: -6px 0 0;
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 650;
+    }
+
     .filters {
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding-bottom: 2px;
+      padding: 2px 0 4px;
       scrollbar-width: thin;
     }
 
     .chip {
       flex: 0 0 auto;
-      min-height: 38px;
-      padding: 0 13px;
+      min-height: 40px;
+      padding: 0 15px;
       border: 1px solid var(--line);
       border-radius: 999px;
       background: #fff;
       color: var(--ink);
       cursor: pointer;
+      font-weight: 760;
       white-space: nowrap;
+      transition: background-color .18s ease, border-color .18s ease, color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+
+    .chip:hover {
+      border-color: rgba(8, 127, 122, .46);
+      background: #ffffff;
+      color: var(--teal-dark);
+      box-shadow: 0 6px 16px rgba(8, 127, 122, .11);
+      transform: translateY(-1px);
     }
 
     .chip.active {
       border-color: var(--teal);
-      background: rgba(8, 127, 122, .09);
-      color: var(--teal-dark);
-      font-weight: 800;
+      background: var(--teal);
+      color: #fff;
+      font-weight: 900;
+      box-shadow: 0 8px 18px rgba(8, 127, 122, .18);
+    }
+
+    .chip.active:hover {
+      background: var(--teal-dark);
+      border-color: var(--teal-dark);
+      color: #fff;
     }
 
     main {
@@ -1103,6 +1144,16 @@
         width: 100%;
       }
 
+      .filter-panel {
+        padding: 14px;
+        gap: 10px;
+      }
+
+      .filters {
+        margin-inline: -2px;
+        padding-inline: 2px;
+      }
+
       .section-title {
         align-items: start;
         flex-direction: column;
@@ -1235,7 +1286,11 @@
         <button class="source-link" type="button" id="quickWhatsApp" aria-label="העתקת הודעה לשליחת תאריך ומיקום">שלחו תאריך ומיקום</button>
       </div>
 
-      <nav class="filters" id="filters" aria-label="קטגוריות"></nav>
+      <section class="filter-panel" aria-labelledby="filterTitle">
+        <h2 id="filterTitle">סינון לפי קטגוריה</h2>
+        <p>בחרו קטגוריה כדי לסנן את המוצרים בקטלוג</p>
+        <nav class="filters" id="filters" aria-label="סינון לפי קטגוריה"></nav>
+      </section>
     </div>
   </header>
 
@@ -1516,9 +1571,9 @@
         tags: ["AI", "צילום", "מזכרת", "אירועי חברה", "חדשני"],
         extraSearch: "צילום ותוכן לאירועים אירועים עסקיים בר/בת מצווה קבלות פנים השקות כנסים",
         images: [
-          { number: "R1", path: "public/images/products/robot-arm/robot-arm-event.jpg" },
-          { number: "R2", path: "public/images/products/robot-arm/robot-arm-closeup.jpg" },
-          { number: "R3", path: "public/images/products/robot-arm/robot-arm-clean.jpg" }
+          { number: "R1", path: "images/products/robot-arm/robot-arm-event.jpg" },
+          { number: "R2", path: "images/products/robot-arm/robot-arm-closeup.jpg" },
+          { number: "R3", path: "images/products/robot-arm/robot-arm-clean.jpg" }
         ]
       },
       {
