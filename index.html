@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>חבילות מוצעות | נופר הפקות</title>
+  <title>קטלוג נופר הפקות</title>
   <style>
     :root {
       color-scheme: light;
@@ -16,6 +16,7 @@
       --teal-dark: #05635f;
       --teal-soft: #e7f5f3;
       --gold: #b57a18;
+      --blue: #2f5e9e;
       --shadow: 0 14px 36px rgba(22, 26, 34, .11);
     }
 
@@ -31,182 +32,608 @@
     }
 
     button,
-    input,
-    textarea {
+    input {
       font: inherit;
     }
 
     button:focus-visible,
     a:focus-visible,
-    input:focus-visible,
-    textarea:focus-visible {
+    input:focus-visible {
       outline: 3px solid rgba(8, 127, 122, .42);
       outline-offset: 3px;
+    }
+
+    a {
+      color: inherit;
     }
 
     .top {
       border-bottom: 1px solid var(--line);
       background:
-        radial-gradient(circle at 12% 0%, rgba(19, 159, 218, .14), transparent 32%),
-        radial-gradient(circle at 88% 6%, rgba(244, 46, 138, .11), transparent 30%),
+        radial-gradient(circle at 12% 0%, rgba(19, 159, 218, .16), transparent 32%),
+        radial-gradient(circle at 88% 6%, rgba(244, 46, 138, .14), transparent 30%),
         linear-gradient(135deg, #ffffff 0%, #fff9ef 48%, #f5fbff 100%);
     }
 
-    .top-inner,
-    main,
-    footer {
-      width: min(1120px, calc(100% - 32px));
-      margin: 0 auto;
-    }
-
     .top-inner {
-      padding: 30px 0 24px;
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 24px;
       display: grid;
-      gap: 16px;
+      gap: 20px;
     }
 
-    .nav-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+    }
+
+    .brand {
+      display: block;
+      margin-bottom: 12px;
     }
 
     .brand-logo {
-      width: 82px;
-      height: 82px;
+      display: block;
+      width: 112px;
+      height: 112px;
       border-radius: 50%;
       object-fit: contain;
       background: #fff;
       box-shadow: 0 12px 32px rgba(21, 23, 28, .13);
     }
 
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 0 14px;
-      border: 1px solid var(--teal);
-      border-radius: 8px;
-      color: var(--teal-dark);
-      background: #fff;
-      text-decoration: none;
-      font-weight: 900;
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--teal);
+      font-weight: 800;
+      font-size: clamp(1.16rem, 1.8vw, 1.36rem);
     }
 
     h1 {
       margin: 0;
-      max-width: 840px;
-      font-size: clamp(2rem, 3vw, 3rem);
+      max-width: 760px;
+      font-size: clamp(2rem, 3.2vw, 3.2rem);
       line-height: 1.08;
       letter-spacing: 0;
     }
 
     .lead {
-      margin: 0;
+      margin: 10px 0 0;
       max-width: 820px;
       color: var(--muted);
-      font-size: clamp(1.08rem, 1.6vw, 1.25rem);
+      font-size: clamp(1.14rem, 1.7vw, 1.32rem);
       font-weight: 650;
     }
 
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(110px, 1fr));
+      gap: 10px;
+      min-width: 260px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fafbfc;
+      padding: 12px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.45rem;
+      line-height: 1;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .search input {
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 14px;
+      border: 1px solid var(--teal);
+      border-radius: 8px;
+      background: var(--teal);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .filter-panel {
+      display: grid;
+      gap: 12px;
+      margin: 2px 0 4px;
+      padding: 16px;
+      border: 1px solid rgba(8, 127, 122, .22);
+      border-radius: 8px;
+      background: #f3faf8;
+    }
+
+    .filter-panel h2 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 1.05rem;
+      line-height: 1.25;
+    }
+
+    .filter-panel p {
+      margin: -6px 0 0;
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 650;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 2px 0 4px;
+      scrollbar-width: thin;
+    }
+
+    .helper-link {
+      justify-self: start;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 40px;
+      width: fit-content;
+      padding: 0 15px;
+      border: 1px solid rgba(8, 127, 122, .46);
+      border-radius: 999px;
+      background: #e4f4ef;
+      color: var(--teal-dark);
+      text-decoration: none;
+      font-weight: 900;
+      transition: background-color .18s ease, border-color .18s ease, color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+
+    .helper-link:hover {
+      border-color: var(--teal);
+      background: var(--teal);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(8, 127, 122, .18);
+      transform: translateY(-1px);
+    }
+
+    .helper-link:focus-visible {
+      outline: 3px solid rgba(8, 127, 122, .42);
+      outline-offset: 3px;
+    }
+
+    .helper-link span {
+      display: inline-grid;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--teal-dark);
+      font-weight: 900;
+    }
+
+    .chip {
+      flex: 0 0 auto;
+      min-height: 40px;
+      padding: 0 15px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 760;
+      white-space: nowrap;
+      transition: background-color .18s ease, border-color .18s ease, color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+
+    .chip:hover {
+      border-color: rgba(8, 127, 122, .46);
+      background: #ffffff;
+      color: var(--teal-dark);
+      box-shadow: 0 6px 16px rgba(8, 127, 122, .11);
+      transform: translateY(-1px);
+    }
+
+    .chip.active {
+      border-color: var(--teal);
+      background: var(--teal);
+      color: #fff;
+      font-weight: 900;
+      box-shadow: 0 8px 18px rgba(8, 127, 122, .18);
+    }
+
+    .chip.active:hover {
+      background: var(--teal-dark);
+      border-color: var(--teal-dark);
+      color: #fff;
+    }
+
     main {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
       padding: 24px 0 116px;
     }
 
-    .package-grid {
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 14px;
+    }
+
+    .section-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 1.18rem;
+    }
+
+    .section-title span {
+      color: var(--muted);
+      font-size: .92rem;
+      white-space: nowrap;
+    }
+
+    .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 15px;
       align-items: stretch;
     }
 
-    .package {
-      min-height: 280px;
-      display: grid;
-      grid-template-rows: auto auto 1fr auto;
-      gap: 10px;
+    .band-cta,
+    .category-cta {
+      min-height: 40px;
+      border: 1px solid var(--teal);
+      border-radius: 8px;
+      background: var(--teal);
+      color: #fff;
+      cursor: pointer;
+      padding: 0 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .product {
+      overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
       box-shadow: 0 8px 28px rgba(20, 28, 38, .07);
-      padding: 16px;
-    }
-
-    .package h2 {
-      margin: 0;
-      font-size: 1.18rem;
-      line-height: 1.25;
-    }
-
-    .package p {
-      margin: 0;
-      color: var(--muted);
-      font-weight: 650;
-    }
-
-    .items {
       display: grid;
-      gap: 7px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
+      grid-template-rows: auto 1fr;
+      height: 100%;
+      min-height: 492px;
     }
 
-    .items li {
-      padding: 8px 10px;
-      border-radius: 8px;
-      background: #f3f6f7;
-      color: #3f4650;
-      font-size: .92rem;
-      font-weight: 760;
+    .product.featured {
+      border-color: rgba(8, 127, 122, .38);
+      box-shadow: 0 12px 34px rgba(8, 127, 122, .13);
     }
 
-    .package button,
-    .whatsapp-send,
-    .remove-choice,
-    .lead-close,
-    .clear-choice {
-      border-radius: 8px;
+    .media {
+      position: relative;
+      background: #e9edf3;
+    }
+
+    .media button {
+      border: 0;
+      background: rgba(255, 255, 255, .9);
+      color: var(--ink);
       cursor: pointer;
-      font-weight: 900;
     }
 
-    .package button,
-    .whatsapp-send {
-      min-height: 42px;
-      border: 1px solid var(--teal);
+    .product-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: #e9edf3;
+      cursor: zoom-in;
+    }
+
+    .category-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      max-width: calc(100% - 20px);
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(21, 23, 28, .82);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+    }
+
+    .flag-tags {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      max-width: calc(100% - 120px);
+      z-index: 2;
+    }
+
+    .flag-tag {
+      padding: 4px 9px;
+      border-radius: 999px;
       background: var(--teal);
       color: #fff;
-      padding: 0 14px;
+      font-size: .76rem;
+      font-weight: 900;
+      box-shadow: 0 8px 18px rgba(8, 127, 122, .22);
     }
 
-    .package button.selected {
+    .flag-tag.gold {
+      background: var(--gold);
+    }
+
+    .subcategory-tag {
+      position: absolute;
+      top: 42px;
+      right: 10px;
+      max-width: calc(100% - 20px);
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .9);
+      color: var(--ink);
+      font-size: .76rem;
+      font-weight: 800;
+    }
+
+    .carousel-controls {
+      position: absolute;
+      inset-inline: 9px;
+      top: 50%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .carousel-controls button {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      pointer-events: auto;
+      box-shadow: 0 4px 14px rgba(21, 23, 28, .2);
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+
+    .dots {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      display: flex;
+      gap: 5px;
+      direction: ltr;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .68);
+      border: 1px solid rgba(0, 0, 0, .16);
+    }
+
+    .dot.active {
+      width: 20px;
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .product-body {
+      padding: 14px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto auto;
+      gap: 9px;
+    }
+
+    .product h3 {
+      margin: 0;
+      font-size: 1.12rem;
+      line-height: 1.25;
+      min-height: 2.8em;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .tagline {
+      margin: -3px 0 0;
+      color: var(--teal-dark);
+      font-weight: 800;
+      font-size: .92rem;
+      min-height: 2.8em;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .description {
+      margin: 0;
+      color: var(--muted);
+      font-size: .94rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      min-height: 29px;
+      align-content: start;
+    }
+
+    .pill {
+      border-radius: 999px;
+      background: #f0f2f5;
+      padding: 4px 9px;
+      color: #4c5460;
+      font-size: .78rem;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .actions button,
+    .actions a,
+    .tray button {
+      min-height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 11px;
+      font-weight: 700;
+    }
+
+    .actions .quote,
+    .tray .copy {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: #fff;
+    }
+
+    .actions .quote.selected {
       background: var(--teal-dark);
       border-color: var(--teal-dark);
     }
 
-    .toast {
-      position: fixed;
-      right: 18px;
-      bottom: 90px;
-      z-index: 60;
-      transform: translateY(12px);
-      opacity: 0;
-      pointer-events: none;
-      border-radius: 8px;
-      background: #15171c;
-      color: #fff;
-      padding: 10px 13px;
-      box-shadow: var(--shadow);
-      transition: opacity .18s ease, transform .18s ease;
+    .actions button[data-action="open"] {
+      background: #fff;
+      border-color: var(--line);
+      color: var(--teal-dark);
     }
 
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
+    .empty {
+      display: none;
+      margin: 58px auto;
+      max-width: 520px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 1.04rem;
+    }
+
+    .tray {
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      z-index: 20;
+      max-width: 900px;
+      margin: 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .96);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+      pointer-events: none;
+    }
+
+    .tray.open {
+      display: grid;
+    }
+
+    .selection-fab {
+      display: none;
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 45;
+      min-height: 48px;
+      border: 1px solid var(--teal);
+      border-radius: 999px;
+      background: var(--teal);
+      color: #fff;
+      cursor: pointer;
+      padding: 0 18px;
+      font-weight: 900;
+      box-shadow: var(--shadow);
+    }
+
+    .tray button {
+      pointer-events: auto;
+    }
+
+    .tray-text {
+      min-width: 0;
+      color: var(--muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding-inline: 4px;
+    }
+
+    .tray-text strong {
+      color: var(--ink);
     }
 
     .lead-modal {
@@ -255,7 +682,9 @@
       min-width: 40px;
       min-height: 40px;
       border: 1px solid var(--line);
+      border-radius: 8px;
       background: #fff;
+      cursor: pointer;
       font-size: 1.35rem;
       line-height: 1;
     }
@@ -289,17 +718,11 @@
     .selected-item {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
-      gap: 8px;
+      gap: 4px;
       padding: 10px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: #fff;
-    }
-
-    .selected-item-details {
-      display: grid;
-      gap: 4px;
-      min-width: 0;
     }
 
     .selected-item strong {
@@ -311,13 +734,22 @@
       font-size: .86rem;
     }
 
+    .selected-item-details {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+    }
+
     .remove-choice {
       align-self: start;
       min-height: 34px;
       border: 1px solid var(--line);
+      border-radius: 8px;
       background: #fff;
       color: var(--teal-dark);
+      cursor: pointer;
       padding: 0 10px;
+      font-weight: 800;
     }
 
     .lead-form {
@@ -375,23 +807,201 @@
       flex-wrap: wrap;
     }
 
-    .clear-choice {
+    .whatsapp-send {
+      min-height: 44px;
+      border: 1px solid var(--teal);
+      border-radius: 8px;
+      background: var(--teal);
+      color: #fff;
+      cursor: pointer;
+      padding: 0 16px;
+      font-weight: 900;
+    }
+
+    .viewer {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      grid-template-rows: auto 1fr auto;
+      background: rgba(9, 11, 15, .9);
+      color: #fff;
+    }
+
+    .viewer.open {
+      display: grid;
+    }
+
+    .viewer-bar,
+    .viewer-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px;
+    }
+
+    .viewer-title {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 800;
+    }
+
+    .viewer-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .viewer button,
+    .viewer a {
+      min-width: 42px;
       min-height: 40px;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--teal-dark);
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .1);
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 0 12px;
     }
 
+    .stage {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 58px 1fr 58px;
+      align-items: center;
+      gap: 8px;
+      padding: 0 14px;
+    }
+
+    .stage img {
+      width: 100%;
+      height: 100%;
+      max-height: calc(100vh - 168px);
+      object-fit: contain;
+      justify-self: center;
+      align-self: center;
+      border-radius: 8px;
+    }
+
+    .viewer-footer {
+      justify-content: center;
+      color: rgba(255, 255, 255, .74);
+      font-size: .92rem;
+    }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 90px;
+      z-index: 60;
+      transform: translateY(12px);
+      opacity: 0;
+      pointer-events: none;
+      border-radius: 8px;
+      background: #15171c;
+      color: #fff;
+      padding: 10px 13px;
+      box-shadow: var(--shadow);
+      transition: opacity .18s ease, transform .18s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .accessibility-toggle {
+      position: fixed;
+      left: 18px;
+      top: 50%;
+      z-index: 65;
+      min-width: 82px;
+      height: 48px;
+      border: 1px solid var(--teal);
+      border-radius: 999px;
+      background: var(--teal);
+      color: #fff;
+      font-weight: 900;
+      cursor: pointer;
+      padding: 0 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .accessibility-panel {
+      position: fixed;
+      left: 18px;
+      top: calc(50% + 58px);
+      z-index: 65;
+      width: min(260px, calc(100vw - 36px));
+      display: none;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      padding: 12px;
+    }
+
+    .accessibility-panel.open {
+      display: grid;
+      gap: 8px;
+    }
+
+    .accessibility-panel strong {
+      font-size: .98rem;
+    }
+
+    .accessibility-panel button {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      text-align: right;
+      padding: 0 10px;
+    }
+
     footer {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto 100px;
       padding: 20px 0;
       border-top: 1px solid var(--line);
       color: var(--muted);
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
       gap: 12px;
-      flex-wrap: wrap;
       font-size: .92rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .footer-logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      object-fit: contain;
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(21, 23, 28, .1);
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
     footer a {
@@ -400,15 +1010,183 @@
       text-decoration: none;
     }
 
+    footer button {
+      border: 0;
+      background: transparent;
+      color: var(--teal-dark);
+      cursor: pointer;
+      padding: 0;
+      font-weight: 800;
+      text-decoration: underline;
+    }
+
+    .policy-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      display: none;
+      place-items: center;
+      padding: 18px;
+      background: rgba(9, 11, 15, .62);
+    }
+
+    .policy-modal.open {
+      display: grid;
+    }
+
+    .policy-dialog {
+      width: min(760px, 100%);
+      max-height: min(760px, calc(100vh - 36px));
+      overflow: auto;
+      border-radius: 8px;
+      background: #fff;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .policy-dialog h2 {
+      margin: 0 0 12px;
+    }
+
+    .policy-dialog p,
+    .policy-dialog li {
+      color: var(--muted);
+    }
+
+    .policy-close {
+      float: left;
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      padding: 0 12px;
+    }
+
+    body.text-large { font-size: 112%; }
+    body.text-small { font-size: 92%; }
+    body.high-contrast {
+      --bg: #000;
+      --ink: #fff;
+      --muted: #f2f2f2;
+      --line: #fff;
+      --panel: #111;
+      --teal: #ffdd00;
+      --teal-dark: #ffdd00;
+      background: #000;
+      color: #fff;
+    }
+
+    body.high-contrast .top,
+    body.high-contrast .band,
+    body.high-contrast .product,
+    body.high-contrast .tray,
+    body.high-contrast .lead-dialog,
+    body.high-contrast .selected-summary,
+    body.high-contrast .selected-item,
+    body.high-contrast .policy-dialog,
+    body.high-contrast .accessibility-panel,
+    body.high-contrast .stat,
+    body.high-contrast .search,
+    body.high-contrast .combo {
+      background: #111;
+      color: #fff;
+    }
+
+    body.grayscale {
+      filter: grayscale(1);
+    }
+
+    body.highlight-links a,
+    body.highlight-links footer button {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+      text-decoration: underline;
+    }
+
+    body.reduce-motion *,
+    body.reduce-motion *::before,
+    body.reduce-motion *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+
     @media (max-width: 820px) {
-      .brand-logo {
-        width: 72px;
-        height: 72px;
+      main {
+        padding-bottom: 84px;
       }
 
-      .package-grid,
-      .lead-fields {
+      .intro {
         grid-template-columns: 1fr;
+      }
+
+      .stats {
+        min-width: 0;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-logo {
+        width: 88px;
+        height: 88px;
+      }
+
+      .source-link {
+        width: 100%;
+      }
+
+      .filter-panel {
+        padding: 14px;
+        gap: 10px;
+      }
+
+      .filters {
+        margin-inline: -2px;
+        padding-inline: 2px;
+      }
+
+      .section-title {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .section-actions,
+      .category-cta {
+        width: 100%;
+      }
+
+      .combo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product {
+        min-height: auto;
+      }
+
+      .selection-fab {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .tray {
+        display: none;
+        left: 12px;
+        right: 12px;
+        bottom: 76px;
+        grid-template-columns: 1fr 1fr;
+        pointer-events: auto;
+      }
+
+      .tray.open {
+        display: grid;
       }
 
       .lead-modal {
@@ -422,10 +1200,50 @@
         border-radius: 14px 14px 0 0;
       }
 
+      .lead-fields {
+        grid-template-columns: 1fr;
+      }
+
       .lead-actions,
-      .whatsapp-send,
-      .clear-choice {
+      .whatsapp-send {
         width: 100%;
+      }
+
+      .tray-text {
+        grid-column: 1 / -1;
+        white-space: normal;
+      }
+
+      .stage {
+        grid-template-columns: 44px 1fr 44px;
+        padding: 0 8px;
+      }
+
+      .accessibility-toggle {
+        left: 14px;
+        top: auto;
+        bottom: 76px;
+      }
+
+      .accessibility-panel {
+        left: 14px;
+        top: auto;
+        bottom: 134px;
+      }
+
+      footer {
+        margin-bottom: 82px;
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (min-width: 821px) and (max-width: 1040px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
   </style>
@@ -433,23 +1251,78 @@
 <body>
   <header class="top">
     <div class="top-inner">
-      <div class="nav-row">
-        <img class="brand-logo" src="../nofar-logo.png" alt="נופר הפקות">
-        <a class="back-link" href="../" aria-label="חזרה לקטלוג">חזרה לקטלוג</a>
+      <div class="intro">
+        <div>
+          <div class="brand" aria-label="נופר הפקות">
+            <img class="brand-logo" src="nofar-logo.png" alt="נופר הפקות">
+          </div>
+          <p class="eyebrow">קטלוג נופר הפקות</p>
+          <h1>כל מה שצריך לאירוע במקום אחד</h1>
+          <p class="lead">ציוד, מתנפחים, אטרקציות, דוכני מזון, פינות ישיבה ותפעול לאירועים פרטיים, עסקיים וקהילתיים מנתניה עד חיפה.</p>
+        </div>
+        <div class="stats" aria-label="נתוני קטלוג">
+          <div class="stat">
+            <strong id="productCount">0</strong>
+            <span>מוצרים מוצגים</span>
+          </div>
+          <div class="stat">
+            <strong>60</strong>
+            <span>תמונות מקור</span>
+          </div>
+        </div>
       </div>
-      <h1>לא יודעים מה לבחור? הנה שילובים שעובדים טוב</h1>
-      <p class="lead">בחרו חבילה מוכנה או קבלו כיוון לפי סוג האירוע. אפשר להתחיל מכאן ולהתאים את ההצעה לתאריך, למיקום ולתקציב.</p>
+
+      <div class="toolbar">
+        <label class="search">
+          <span aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" placeholder="חפשו מוצר, קטגוריה או סוג אירוע" autocomplete="off">
+        </label>
+        <button class="source-link" type="button" id="quickWhatsApp" aria-label="העתקת הודעה לשליחת תאריך ומיקום">שלחו תאריך ומיקום</button>
+      </div>
+
+      <section class="filter-panel" aria-labelledby="filterTitle">
+        <h2 id="filterTitle">סינון לפי קטגוריה</h2>
+        <p>בחרו קטגוריה כדי לסנן את המוצרים בקטלוג</p>
+        <nav class="filters" id="filters" aria-label="סינון לפי קטגוריה"></nav>
+        <a class="helper-link" href="packages/" aria-label="מעבר לעמוד חבילות מוצעות">
+          <span aria-hidden="true">?</span>
+          לא יודעים מה לבחור?
+        </a>
+      </section>
     </div>
   </header>
 
   <main>
-    <section class="package-grid" id="packageGrid" aria-label="חבילות מוצעות"></section>
+    <div class="section-title">
+      <h2 id="activeTitle">כל המוצרים</h2>
+      <div class="section-actions">
+        <span id="resultCount"></span>
+        <button class="category-cta" type="button" id="categoryCta" aria-label="העתקת בקשה לבדיקת זמינות לאירוע">בדיקת זמינות לאירוע</button>
+      </div>
+    </div>
+    <section class="grid" id="grid" aria-live="polite"></section>
+    <p class="empty" id="emptyState">לא נמצאו מוצרים תואמים לחיפוש.</p>
   </main>
 
   <footer>
-    <span>נופר הפקות | חבילות מוצעות לאירועים</span>
-    <a href="https://wa.me/972506363577" target="_blank" rel="noopener">וואטסאפ</a>
+    <div class="footer-brand">
+      <img class="footer-logo" src="nofar-logo.png" alt="">
+      <span>נופר הפקות | ציוד, אטרקציות, דוכני מזון ותפעול לאירועים</span>
+    </div>
+    <div class="footer-links">
+      <a href="tel:0506363577">050-6363577</a>
+      <a href="https://wa.me/972506363577" target="_blank" rel="noopener">וואטסאפ</a>
+      <button type="button" data-policy="accessibility" aria-label="פתיחת הצהרת נגישות">הצהרת נגישות</button>
+      <button type="button" data-policy="privacy" aria-label="פתיחת מדיניות פרטיות">מדיניות פרטיות</button>
+    </div>
   </footer>
+
+  <button class="selection-fab" type="button" id="selectionFab" aria-expanded="false" aria-controls="leadModal" aria-label="פתיחת הבחירות שלי">הבחירות שלי</button>
+  <aside class="tray" id="selectionTray" aria-label="מוצרים שמעניינים אותי">
+    <div class="tray-text" id="trayText"><strong>רשימת התעניינות</strong> עדיין ריקה.</div>
+    <button type="button" id="clearSelection" aria-label="ניקוי סל ההתעניינות">ניקוי</button>
+    <button class="copy" type="button" id="copyRequest" aria-label="פתיחת הבחירות שלי">הבחירות שלי</button>
+  </aside>
 
   <div class="lead-modal" id="leadModal" role="dialog" aria-modal="true" aria-labelledby="leadTitle">
     <div class="lead-dialog">
@@ -458,27 +1331,40 @@
           <h2 id="leadTitle">הוספתם לאירוע</h2>
           <p id="leadIntro">אפשר להוסיף פרטים ולשלוח בקשה ישירות לנופר הפקות.</p>
         </div>
-        <button class="lead-close" type="button" id="leadClose" aria-label="סגירת הפופאפ">×</button>
+        <button class="lead-close" type="button" id="leadClose" aria-label="סגירת חלון הבחירות">×</button>
       </div>
       <div class="lead-body">
-        <section class="selected-summary" aria-label="סיכום הבחירות">
+        <section class="selected-summary" aria-label="תקציר הבחירות שלי">
           <h3>הבחירות שלי לאירוע</h3>
           <div class="selected-list" id="selectedList"></div>
         </section>
         <form class="lead-form" id="leadForm">
           <h3>פרטי האירוע</h3>
           <div class="lead-fields">
-            <label class="lead-field">שם מלא<input id="leadName" type="text" autocomplete="name"></label>
-            <label class="lead-field">טלפון<input id="leadPhone" type="tel" autocomplete="tel"></label>
-            <label class="lead-field">תאריך האירוע<input id="leadDate" type="text" inputmode="text"></label>
-            <label class="lead-field">מיקום האירוע<input id="leadLocation" type="text"></label>
-            <label class="lead-field">סוג האירוע<input id="leadType" type="text"></label>
-            <label class="lead-field">כמות משתתפים<input id="leadGuests" type="number" min="1" inputmode="numeric"></label>
-            <label class="lead-field full">הערות / בקשות מיוחדות<textarea id="leadNotes"></textarea></label>
+            <label class="lead-field">שם מלא
+              <input id="leadName" name="leadName" autocomplete="name">
+            </label>
+            <label class="lead-field">טלפון
+              <input id="leadPhone" name="leadPhone" autocomplete="tel" inputmode="tel">
+            </label>
+            <label class="lead-field">תאריך האירוע
+              <input id="leadDate" name="leadDate" autocomplete="off">
+            </label>
+            <label class="lead-field">מיקום האירוע
+              <input id="leadLocation" name="leadLocation" autocomplete="address-level2">
+            </label>
+            <label class="lead-field">סוג האירוע
+              <input id="leadType" name="leadType" autocomplete="off">
+            </label>
+            <label class="lead-field">כמות משתתפים
+              <input id="leadGuests" name="leadGuests" inputmode="numeric" autocomplete="off">
+            </label>
+            <label class="lead-field full">הערות / בקשות מיוחדות
+              <textarea id="leadNotes" name="leadNotes"></textarea>
+            </label>
           </div>
           <p class="lead-note">נופר יחזרו אליכם עם זמינות והצעה מסודרת</p>
           <div class="lead-actions">
-            <button class="clear-choice" type="button" id="clearSelection">ניקוי בחירות</button>
             <button class="whatsapp-send" type="submit">שליחה בוואטסאפ</button>
           </div>
         </form>
@@ -486,26 +1372,571 @@
     </div>
   </div>
 
+  <button class="accessibility-toggle" type="button" id="accessibilityToggle" aria-expanded="false" aria-controls="accessibilityPanel" aria-label="פתיחת תפריט נגישות">נגישות</button>
+  <div class="accessibility-panel" id="accessibilityPanel" aria-label="תפריט נגישות">
+    <strong>אפשרויות נגישות</strong>
+    <button type="button" data-a11y="larger">הגדלת טקסט</button>
+    <button type="button" data-a11y="smaller">הקטנת טקסט</button>
+    <button type="button" data-a11y="contrast">ניגודיות גבוהה</button>
+    <button type="button" data-a11y="grayscale">גווני אפור</button>
+    <button type="button" data-a11y="links">הדגשת קישורים</button>
+    <button type="button" data-a11y="motion">עצירת אנימציות</button>
+    <button type="button" data-a11y="reset">איפוס הגדרות</button>
+  </div>
+
+  <div class="policy-modal" id="accessibilityModal" role="dialog" aria-modal="true" aria-labelledby="accessibilityTitle">
+    <div class="policy-dialog">
+      <button class="policy-close" type="button" data-close-policy>סגירה</button>
+      <h2 id="accessibilityTitle">הצהרת נגישות</h2>
+      <p>נופר הפקות רואה חשיבות במתן שירות שוויוני, מכבד ונגיש לכלל לקוחותיה, ופועלת להנגיש את הקטלוג הדיגיטלי ואת אמצעי הפנייה ככל הניתן.</p>
+      <p>הקטלוג נבנה במטרה לאפשר גלישה נוחה, קריאה ברורה, שימוש בכפתורים נגישים והתאמה למסכים שונים.</p>
+      <p>אם נתקלתם בקושי בגלישה, בקריאת מידע, במילוי פרטים או בשימוש באחד הרכיבים באתר / בקטלוג, ניתן לפנות אלינו ונעשה מאמץ לסייע ולתקן את הנדרש.</p>
+      <h3>פרטי יצירת קשר לנושא נגישות</h3>
+      <ul>
+        <li>טלפון: 050-6363577</li>
+        <li>דוא״ל: להשלמה</li>
+        <li>שם רכז/ת נגישות: להשלמה</li>
+        <li>תאריך עדכון הצהרת הנגישות: 2 ביולי 2026</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="policy-modal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+    <div class="policy-dialog">
+      <button class="policy-close" type="button" data-close-policy>סגירה</button>
+      <h2 id="privacyTitle">מדיניות פרטיות</h2>
+      <p>הקטלוג הדיגיטלי של נופר הפקות מאפשר למשתמשים לצפות במוצרים, לבחור תחומי עניין ולפנות לקבלת הצעת מחיר.</p>
+      <p>בעת שליחת פנייה ייתכן שייאספו פרטים כגון שם, טלפון, סוג אירוע, תאריך, מיקום, כמות משתתפים ותוכן ההודעה.</p>
+      <p>המידע נמסר מרצון המשתמש ומשמש לצורך יצירת קשר, מתן הצעת מחיר, התאמת שירותים לאירוע ושיפור השירות.</p>
+      <p>נופר הפקות לא תעביר את פרטי המשתמש לצדדים שלישיים, אלא אם הדבר נדרש לצורך מתן השירות, תפעול הפנייה, עמידה בדרישות החוק או בהסכמת המשתמש.</p>
+      <p>המשתמש רשאי לבקש עיון, תיקון או מחיקה של פרטיו באמצעות פנייה לנופר הפקות.</p>
+      <p>המערכת עשויה להשתמש בכלים חיצוניים כגון וואטסאפ, מדידה, אנליטיקה, פיקסלים או קוקיז לצורכי תפעול, מדידה ושיפור השירות. יש לאמת מול נופר אילו כלים פעילים בפועל.</p>
+      <h3>פרטי יצירת קשר</h3>
+      <ul>
+        <li>טלפון: 050-6363577</li>
+        <li>דוא״ל: להשלמה</li>
+        <li>תאריך עדכון מדיניות הפרטיות: 2 ביולי 2026</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="תצוגת מוצר">
+    <div class="viewer-bar">
+      <div class="viewer-title" id="viewerTitle"></div>
+      <div class="viewer-actions">
+        <a id="viewerDrive" href="#" target="_blank" rel="noopener">דרייב</a>
+        <button id="viewerSelect" type="button">להוסיף</button>
+        <button id="closeViewer" type="button" aria-label="סגירה">×</button>
+      </div>
+    </div>
+    <div class="stage">
+      <button id="nextViewerImage" type="button" aria-label="הבא">›</button>
+      <img id="viewerImage" alt="">
+      <button id="prevViewerImage" type="button" aria-label="הקודם">‹</button>
+    </div>
+    <div class="viewer-footer" id="viewerMeta"></div>
+  </div>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    const combos = [
-      { id: "kids-classic", title: "אירוע ילדים קלאסי", description: "פתרון שמח וברור לילדים עם פעילות מרכזית ודוכני נשנוש אהובים.", items: "ארנת ספורט מתנפחת + מכונת פופקורן + מכונת ברד" },
-      { id: "mitzvah-energy", title: "בר/בת מצווה אנרגטי", description: "חבילה צבעונית וקצבית לבני נוער, עם צילום, משחקים ורגעי שיא ברחבה.", items: "פעילות זוהרת / פול מון + עמדות מולטימדיה לאירועים + תותח קצף" },
-      { id: "community-event", title: "אירוע קהילה", description: "שילוב נוח לאירוע פתוח עם אוכל מהיר, אזור ישיבה ותחושת יריד קהילתי.", items: "מכונת נקניקיות + צ'יפסר חשמלי + פינות ישיבה" },
-      { id: "company-light", title: "אירוע חברה קליל", description: "מסלול חברתי ולא מחייב לעובדים, עם משחקים, אוכל ואווירה קלילה.", items: "משחקי שולחן ו-ODT + שולחן סנוקר + דוכן פיצות / פוקאצ'ות" },
-      { id: "sweet-zone", title: "מתחם מתוקים", description: "מתחם קינוחים חם ומצטלם שמתאים לקבלות פנים, ילדים ואירועי חברה.", items: "מכונת מפל שוקולד + מכונת וופל בלגי מקצועית + עמדת קרפ צרפתי" },
-      { id: "team-competition", title: "יום גיבוש תחרותי", description: "חבילה תחרותית ליום גיבוש עם עמדות משחק שמפעילות את הקהל.", items: "מכונת אגרוף ארקייד + שולחן כדורגל STORM + שולחן הוקי אויר" }
+    const imageIds = [
+      "15b7Rs4EnAlzsjrExOvEQXApVcIGqarZ4",
+      "1mJerSQyP99V_n2iOUoQsbg62rwDEnw2i",
+      "1ib8JZWlFzwVIcXwl0K3VKmLz6XgVCcUE",
+      "1Oh_XUBW9djdxeSZFsugUd8sIMfjn5lKA",
+      "1ZuDSFXhpuaGDfy9HnGfVl2FOAbFUEv8e",
+      "17atQ7iq5I2jYgm8WXtfvq7zfZfdxNp-U",
+      "1MYeJ-f5P4IYdV_A8QLUXoeVnsfPlFSC7",
+      "1ID_nSqYRdeGVFWAVwnTEE47F6WhIU6CS",
+      "15TCRzqbc_h5T_MEFisEUksF6crBNzNTO",
+      "1tV2V6VUx0pN0VzIWfrV6eBOV-ERs-X46",
+      "1-G6uzpMyPcVB4AAOGDfenysAe2E_5sID",
+      "1mpflRqYRToSXXRKXu7n9babhITWbN1o6",
+      "1cEt5MdLkiwMk5rROMr5H3GcfKp5P7aOW",
+      "1-svwiUmXuJ1q-9PfbKeGV2eNMo1QyOrh",
+      "1B4biQTo2v9oKGggpM_HuT7kU6WUN2ZD1",
+      "1958onuhDTBNVfliwBRqm_xLbcFJCj3jD",
+      "1Uczh5QIlpJ8HUFZ7Wbz1Y8eaK-ZSJ0a1",
+      "1k9tu-tG5HH7Xzf8eR2iURKYs8Ipop5mm",
+      "1Sai-j1dl4ZwzoL0NGz_Dl-CRtQqar6LH",
+      "1T4xBQqfF2yyZeWcNqzy4bsjFbtR9Fx79",
+      "12vfamhpLBhKBfulelm9kNsKVgcSnYn_c",
+      "1-SUhZUitL-lK55kBZVS47U-ImN_yDJ9p",
+      "1jjzgL35V5gXFzQ3gKUqKXuGb_PUCFzH6",
+      "1jAyHrp6SWzj35Su1QWKAOAR_SaTmjbGZ",
+      "1ZQtXMAkWzUp51bbRt53q-FvSxloZCcB1",
+      "1qbVDK_lCymazJx1UU0ilGpi3v5rPXY3k",
+      "1hYVtU3oAYlt7xk9HoD24vSl6bQQ7K5SD",
+      "12ys2Gv15Hxc-kOCrIQYU4VIOK0gPi8na",
+      "1AT3vRVsypCShiWfJp6HGbkfnCVu5ICCA",
+      "11sG2WLlRozZBU0o3uYRt3wjJ85vGsI5J",
+      "1R4IxhrPNk__PdvcbEkX9MR8DhgBrdWfI",
+      "1Isotl3fGsM8JzbchMYC17C-9jxya8Bo2",
+      "1e4h48noZSK2GTPsRb2BSn0R-Q-O_ijYZ",
+      "1EXVC7QGHWSM1IbmE6e50JImCKHrgSbcs",
+      "1X4yAhLjHqzpLrngRIVtU5dPjC_gnwqXs",
+      "11qcijEU6Lw70BfTvBmGFD2bBCjvjHyK6",
+      "1fUxIP7Cex-uSNc4__owDY0i3y08tMaOY",
+      "16nTPCdr8b5YTnVoyNYpa__Nouyl6otm7",
+      "17JNNcLL1_kZdyQpaWRaQkChW3kJsjCis",
+      "1dM6leFOp9UB38czENDBckm9SUIL8nnQ7",
+      "1ghq2nvG8jA_XmfqvoTmOP1hG3poOA0yE",
+      "1IPcsIL80BQFwQD6cDXavDAYsDDQakt2y",
+      "1i6vnGlCJ50pa0k2z1KPDpXMjnvcd6LkE",
+      "1wiNpoKbl9LZ6Dkv_h7MmwIpzNS80vhnJ",
+      "1FOOY7Rg9Lrx_xd5p0Wjf_HgBP11WtpbD",
+      "1QiSt7ZgocsoawGixKik6rRZM3xOyQXuA",
+      "1AJMBGcaBqUlTvi4jKCNCLIOUy_dkjnmQ",
+      "1EdOSQa9LlOIyp4-x8P2zDjw-3vgo1EEF",
+      "1mU8KFfP_MsM0ekhYk_sw5Ih2Jm4IqYkH",
+      "1I_DPl525VtfLgb3AbX1BthQmiW3S5Ydw",
+      "1O5Hr0OFfzs3AKCrxJO9H3RBG47WYEC8l",
+      "1gzCc1MUFGOzTM0H9Gn-ZPlxAMQrV4Xg3",
+      "15g6QbI1Atcrup3F2Zi3u_stYXTdc6YoS",
+      "1xXhC3jCIzMRceEQWpquqwr-hRAV84tjM",
+      "1qS0c1yBmclFOSakfM7pM6T-XryILuagi",
+      "1oyp5UE-iqohpn2qT9tSJND0-Xv_um5oX",
+      "1UZ_pXayPIdLi73QY6Xvmu8nDSYuwnFZO",
+      "1QETtR7HcgwY3TbVqgDWQ80V5xcfaoBKf",
+      "1t0xOTFNEa4d9t4ypDNRdfqDH5dp_SzVY",
+      "1fNN6XdDcMcCknjhkmbbyGopPuRC8qDJ-"
     ];
 
-    const packageGrid = document.querySelector("#packageGrid");
+    const categories = [
+      { id: "all", label: "הכל" },
+      { id: "inflatables", label: "מתנפחים לאירועים" },
+      { id: "attractions", label: "אטרקציות ומשחק" },
+      { id: "wood-odt", label: "משחקי שולחן ו-ODT" },
+      { id: "food-drinks", label: "דוכני מזון ושתייה" },
+      { id: "seating", label: "פינות ישיבה ועיצוב אווירה" }
+    ];
+
+    const subcategoryLabels = {
+      hotFood: "אוכל חם",
+      sweets: "מתוקים וקינוחים",
+      summerDrinks: "שתייה וקיץ",
+      winterIndoor: "חורף ומקום סגור",
+      snacks: "נשנושים",
+      tableConcept: "משחקי שולחן וקונספט",
+      arcade: "ארקייד ותחרות",
+      multimedia: "מולטימדיה",
+      seating: "פינות ישיבה",
+      support: "ציוד משלים"
+    };
+
+    const categoryLabels = Object.fromEntries(categories.map((category) => [category.id, category.label]));
+    const image = (source) => {
+      if (typeof source === "object") {
+        return {
+          number: source.number,
+          id: source.path,
+          thumb: source.path,
+          large: source.path,
+          drive: source.path
+        };
+      }
+
+      const number = source;
+      const id = imageIds[number - 1];
+      const localPath = `catalog-images/image-${String(number).padStart(2, "0")}.jpg`;
+      return {
+        number,
+        id,
+        thumb: localPath,
+        large: localPath,
+        drive: `https://drive.google.com/file/d/${id}/view`
+      };
+    };
+
+    const products = [
+      {
+        id: "robot-arm-artist",
+        category: "attractions",
+        displayCategory: "אטרקציות לאירועים",
+        featured: true,
+        badges: ["חדש", "מוצר דגל"],
+        name: "זרוע רובוטית מציירת",
+        tagline: "אטרקציית AI חדשנית שמציירת את האורחים בזמן אמת",
+        description: "זרוע רובוטית שהופכת תמונה לציור אישי. האורחים מצטלמים, צופים ברובוט מצייר אותם, ובסוף מקבלים מזכרת מודפסת מהאירוע. מתאים לאירועי חברה, השקות, כנסים, בר/בת מצווה וקבלות פנים.",
+        tags: ["AI", "צילום", "מזכרת", "אירועי חברה", "חדשני"],
+        extraSearch: "צילום ותוכן לאירועים אירועים עסקיים בר/בת מצווה קבלות פנים השקות כנסים",
+        images: [
+          { number: "R1", path: "images/products/robot-arm/robot-arm-event.jpg" },
+          { number: "R2", path: "images/products/robot-arm/robot-arm-closeup.jpg" },
+          { number: "R3", path: "images/products/robot-arm/robot-arm-clean.jpg" }
+        ]
+      },
+      {
+        id: "inflatable-sports-arena",
+        category: "inflatables",
+        name: "ארנת ספורט מתנפחת / מתנפח כדורגל סנגה",
+        tagline: "מתחם ספורט מתנפח שמרכז פעילות ותחרות במקום אחד",
+        description: "מתקן ספורטיבי וצבעוני שמתאים לימי ספורט, קייטנות, בתי ספר, אירועי קהילה ופעילויות לילדים ונוער. יוצר מוקד משחק ברור ובטיחותי לאורך האירוע.",
+        tags: ["מתנפח", "ספורט", "כדורגל", "ילדים"],
+        images: [2, 6]
+      },
+      {
+        id: "carnival-booth",
+        category: "inflatables",
+        name: "מתנפח קרנבל יריד אמריקאי",
+        tagline: "מתנפח קרנבל צבעוני עם תחנות משחק באווירת יריד",
+        description: "מתנפח קרנבל יריד אמריקאי יוצר עמדת משחק אינטראקטיבית, צבעונית ומלאת תנועה. מתאים לימי הולדת, בתי ספר, מתנ״סים, אירועי חברה וירידי קהילה שרוצים אטרקציה שמושכת קהל מכל כיוון.",
+        tags: ["קרנבל", "ילדים", "קהילה", "יריד"],
+        images: [54, 3]
+      },
+      {
+        id: "red-carpet-photo",
+        category: "attractions",
+        subcategory: "arcade",
+        name: "עמדת צילום",
+        tagline: "פינת צילום שמוסיפה כניסה חגיגית ותמונות מהאירוע",
+        description: "עמדת צילום לאירועים מוסיפה נקודת צילום חגיגית לקבלת פנים, בר/בת מצווה, אירועי חברה ואירועי קונספט. היא נותנת לאורחים מקום ברור להצטלם ומייצרת מזכרת שיווקית מהאירוע.",
+        tags: ["צילום", "קונספט", "קבלת פנים", "בר/בת מצווה"],
+        images: [9]
+      },
+      {
+        id: "poker-table",
+        category: "wood-odt",
+        displayCategory: "משחקי שולחן",
+        subcategory: "tableConcept",
+        name: "שולחן פוקר",
+        tagline: "שולחן פוקר קומפקטי לאירועים בסגנון קזינו",
+        description: "שולחן פוקר קומפקטי לאירועים, מתאים לתחנת משחק, ימי גיבוש, ערבי חברה, בר/בת מצווה ואירועים בסגנון קזינו. מוסיף לאירוע פעילות שולחנית חווייתית ותחרות קלילה.",
+        tags: ["פוקר", "קונספט", "אירועי חברה", "בר/בת מצווה"],
+        images: [15, 16, 49]
+      },
+      {
+        id: "pool-table",
+        category: "wood-odt",
+        displayCategory: "משחקי שולחן",
+        name: "שולחן סנוקר",
+        tagline: "עמדת משחק קלאסית שמוסיפה אווירת לאונג׳ ותחרות קלילה",
+        description: "שולחן סנוקר להשכרה מוסיף לאירוע עמדת משחק אלגנטית, רגועה ותחרותית. מתאים לאירועי חברה, ימי גיבוש, בר/בת מצווה, אירועי נוער ואירועים פרטיים.",
+        tags: ["סנוקר", "אירועי חברה", "נוער", "משחק שולחן"],
+        images: [21, 23, 59]
+      },
+      {
+        id: "air-hockey",
+        category: "wood-odt",
+        displayCategory: "משחקי שולחן",
+        name: "שולחן הוקי אויר",
+        tagline: "משחק מהיר, קליל ותחרותי שמתאים לכל גיל",
+        description: "שולחן הוקי אויר זוגי מכניס לאירוע קצב מהיר, תחרות וצחוק. מתאים לילדים, נוער ומבוגרים ומשתלב מצוין בימי גיבוש, אירועי חברה, בר/בת מצווה ואירועי קהילה.",
+        tags: ["תחרות", "נוער", "מתאים לכל גיל", "משחק שולחן"],
+        images: [51]
+      },
+      {
+        id: "foosball",
+        category: "wood-odt",
+        displayCategory: "משחקי שולחן",
+        name: "שולחן כדורגל רגליים מתקפלות",
+        tagline: "משחק קבוצתי שמייצר תחרות, צחוק ואנרגיה באירוע",
+        description: "שולחן כדורגל איכותי לאירועים מוסיף פעילות מהירה, תחרותית ומלאת אקשן. מתאים לילדים, נוער ומבוגרים, לימי גיבוש, אירועי חברה, בר/בת מצווה, קייטנות ואירועי קהילה.",
+        tags: ["גיבוש", "תחרות", "מתאים לכל גיל", "משחק שולחן"],
+        images: [57]
+      },
+      {
+        id: "storm-foosball",
+        category: "wood-odt",
+        displayCategory: "משחקי שולחן",
+        name: "שולחן כדורגל STORM",
+        tagline: "שולחן כדורגל נוסף ליצירת מתחם משחקים תחרותי",
+        description: "שולחן כדורגל STORM מתאים לאירועים שרוצים יותר מעמדת משחק אחת או מתחם משחקי שולחן עשיר. הוא יוצר תחרות קלילה, מהירה ונגישה לכל גיל.",
+        tags: ["כדורגל שולחן", "STORM", "תחרות", "אירועי חברה"],
+        images: [60]
+      },
+      {
+        id: "soccer-challenge",
+        category: "inflatables",
+        name: "שער כדורגל קליעה למטרה",
+        tagline: "שער קליעה עם נקודות ניקוד לתחרות כדורגל קצרה וברורה",
+        description: "שער כדורגל קליעה למטרה הוא אטרקציה מתנפחת שמייצרת תחרות דיוק פשוטה ומושכת. מתאים לימי הולדת, בר/בת מצווה, פעילויות ילדים, אירועי חברה, גיבושים וירידים.",
+        tags: ["כדורגל", "קליעה למטרה", "ילדים", "תחרות"],
+        images: [56, 1]
+      },
+      {
+        id: "mini-soccer-cage",
+        category: "wood-odt",
+        displayCategory: "משחקי שולחן",
+        name: "שולחן כדורגל סטנגה",
+        tagline: "משחק כדורגל תחרותי שמייצר אקשן וצחוק סביב השולחן",
+        description: "שולחן כדורגל סטנגה הוא אטרקציה שמתאימה לימי גיבוש, אירועי חברה, בר/בת מצווה ואירועי נוער. הוא מכניס לאירוע תחרות קבוצתית קצרה, ברורה ומלאת אנרגיה.",
+        tags: ["כדורגל", "סטנגה", "תחרות", "קבוצתי"],
+        images: [58]
+      },
+      {
+        id: "boxing-machine",
+        category: "attractions",
+        subcategory: "arcade",
+        name: "מכונת אגרוף ארקייד",
+        tagline: "עמדת כוח ותחרות עם ניקוד ברור",
+        description: "מכונת אגרוף ארקייד מודדת את עוצמת האגרוף בזמן אמת ומייצרת תחרות מיידית בין המשתתפים. מתאימה לבר/בת מצווה, אירועי חברה, ימי הולדת, השקות וימי גיבוש.",
+        tags: ["נוער", "תחרות", "ארקייד", "ימי גיבוש"],
+        images: [52, 53, 26]
+      },
+      {
+        id: "basketball-arcade",
+        category: "inflatables",
+        name: "מתנפח כדורסל זוגי",
+        tagline: "עמדת קליעות בקצב מהיר עם תחרות בין משתתפים",
+        description: "מתנפח כדורסל זוגי מאפשר לשני משתתפים להתחרות בו זמנית בקליעות לסל. מתאים לימי ספורט, בתי ספר, אירועי חברה, בר/בת מצווה ואירועי קהילה.",
+        tags: ["כדורסל", "מתנפח", "תחרות", "נוער"],
+        images: [55]
+      },
+      {
+        id: "gaming-screens",
+        category: "attractions",
+        subcategory: "multimedia",
+        name: "עמדות מולטימדיה לאירועים",
+        tagline: "מתחם דיגיטלי מסודר לנוער, עובדים ואירועי קונספט",
+        description: "עמדות מולטימדיה לאירועים כוללות קונסולות כמו XBOX, PlayStation או Nintendo עם מסכים וציוד משחק. מתאימות לאירועי נוער, בר/בת מצווה, ימי חברה ופעילויות קהילה.",
+        tags: ["גיימינג", "נוער", "מסכים", "קונסולות"],
+        images: [24, 46]
+      },
+      {
+        id: "glow-activity",
+        category: "seating",
+        name: "פעילות זוהרת / פול מון",
+        tagline: "פעילות צבעונית עם תאורת UV ואווירת מסיבה",
+        description: "פעילות זוהרת / פול מון מוסיפה לאירוע מתחם זוהר עם איפור, תאורה ואווירת מסיבה. מתאימה לבר/בת מצווה, אירועי נוער ומסיבות קונספט שרוצות נראות צבעונית ומצטלמת.",
+        tags: ["נוער", "תאורה", "בר/בת מצווה", "פול מון", "UV"],
+        images: [13, 44, 18, 19, 17, 20]
+      },
+      {
+        id: "slush-machine",
+        category: "food-drinks",
+        subcategory: "winterIndoor",
+        name: "מכונת שוקו חם \"שוקולטה\"",
+        tagline: "עמדת שתייה חמה שמתאימה במיוחד לאירועי חורף וקבלת פנים",
+        description: "מכונת שוקו חם \"שוקולטה\" מתאימה לימי הולדת, בתי ספר, מתנ״סים, אירועי חורף וקבלות פנים. היא מוסיפה לאירוע שתייה חמה, מפנקת וקלה להגשה.",
+        tags: ["חורף", "שתייה חמה", "ילדים", "קבלת פנים"],
+        images: [5, 35]
+      },
+      {
+        id: "popcorn-machine",
+        category: "food-drinks",
+        subcategory: "snacks",
+        name: "מכונת פופקורן",
+        tagline: "דוכן חם, מהיר ואהוב שמתאים כמעט לכל אירוע",
+        description: "מכונת פופקורן שמתאימה לימי הולדת, בתי ספר, מתנ״סים, אירועי קהילה וקבלות פנים. דוכן פשוט, מוכר ואהוב שקל לשלב לצד ברד, צ׳יפס, פינות ישיבה או אטרקציות לילדים.",
+        tags: ["ילדים", "נשנוש", "מתנ״סים", "קבלות פנים"],
+        images: [10, 33]
+      },
+      {
+        id: "japanese-slush",
+        category: "food-drinks",
+        subcategory: "summerDrinks",
+        name: "מכונת ברד יפני",
+        tagline: "עמדת שתייה קפואה וצבעונית לאירועי קיץ",
+        description: "מכונת ברד יפני מתאימה לימי הולדת, קייטנות, אירועי בית ספר ואירועי קהילה בקיץ. היא מוסיפה לאירוע נקודת התרעננות צבעונית, קלה להגשה ואהובה על ילדים ונוער.",
+        tags: ["ברד", "קיץ", "ילדים", "שתייה קרה"],
+        images: [37]
+      },
+      {
+        id: "cotton-candy",
+        category: "food-drinks",
+        subcategory: "sweets",
+        name: "מכונת סוכר - שערות סבתא",
+        tagline: "עמדת מתוקים צבעונית לילדים ולירידים",
+        description: "מכונת סוכר - שערות סבתא מתאימה לימי הולדת, קייטנות, ירידים ואירועי קהילה. הדוכן מוסיף צבע, ריח מתוק ותחושת חגיגה שקל לזהות מרחוק.",
+        tags: ["ילדים", "מתוקים", "קייטנות"],
+        images: [11, 12, 30]
+      },
+      {
+        id: "plancha-grill",
+        category: "food-drinks",
+        subcategory: "hotFood",
+        name: "פלנצ׳ה גריל מקצועית לאירועים",
+        tagline: "עמדת גריל חמה להכנה מהירה וטעימה של אוכל באירוע",
+        description: "עוצמה, איכות וטעם מושלם בכל צלייה. אידיאלית לבשרים, המבורגרים, נקניקיות וירקות, ומשדרגת כל אירוע עם עמדת גריל חמה ומקצועית.",
+        tags: ["אוכל חם", "גריל", "אירועי חברה", "קהילה"],
+        images: [25]
+      },
+      {
+        id: "hot-dog-roller",
+        category: "food-drinks",
+        subcategory: "hotFood",
+        name: "מכונת נקניקיות",
+        tagline: "עמדת נקניקיות חמה, מהירה וקלה להגשה לאורך כל האירוע",
+        description: "מכונת נקניקיות עם חימום מהיר ועבודה רציפה להגשה חמה לאורך כל האירוע. מתאימה לימי הולדת, בר/בת מצווה, גיבושי חברה, קייטנות ובתי ספר.",
+        tags: ["אוכל חם", "נקניקיות", "קהילה", "מהיר"],
+        images: [28]
+      },
+      {
+        id: "shawarma-stand",
+        category: "food-drinks",
+        subcategory: "hotFood",
+        name: "מכונת שווארמה מקצועית לאירועים ועסקים",
+        tagline: "דוכן אוכל חם לאירועים שצריכים מנה משביעה",
+        description: "מכונת שווארמה מקצועית מתאימה לאירועי חברה, קהילה ואירועים פרטיים עם קהל רעב. היא מוסיפה פתרון אוכל מרכזי, חם ומשביע שמרגיש כמו דוכן פעיל בתוך האירוע.",
+        tags: ["אוכל חם", "אירועי חברה", "קהילה"],
+        images: [27]
+      },
+      {
+        id: "buffet-station",
+        category: "food-drinks",
+        subcategory: "hotFood",
+        name: "דוכן המבורגר",
+        tagline: "עמדת המבורגר חמה עם תוספות, רטבים והגשה מסודרת",
+        description: "דוכן המבורגר לאירועים עם עמדת גריל, לחמניות, רטבים ותוספות לבחירה. מתאים לאירועי חברה, ימי הולדת, בר/בת מצווה, מתנ״סים, קייטנות ואירועי קהילה, ומוסיף לאירוע פתרון אוכל חם, מוכר ומשביע.",
+        tags: ["המבורגר", "אוכל חם", "אירועי חברה", "קהילה"],
+        images: [29]
+      },
+      {
+        id: "pizza-oven",
+        category: "food-drinks",
+        subcategory: "hotFood",
+        name: "דוכן פיצות / פוקאצ'ות לאירועים",
+        tagline: "אוכל חם עם תחושת הכנה במקום",
+        description: "דוכן פיצות / פוקאצ'ות לאירועים מתאים לאירועי ערב, קהילה ומשפחות. הוא מוסיף ריח, תנועה ופתרון אוכל חם שמרגיש טרי ונגיש.",
+        tags: ["אוכל חם", "פיצה", "פוקאצ'ה", "קהילה"],
+        images: [31]
+      },
+      {
+        id: "chips-warmer",
+        category: "food-drinks",
+        subcategory: "hotFood",
+        name: "צ'יפסר חשמלי מקצועי לאירועים ועסקים",
+        tagline: "תוספת חמה ומהירה לצד דוכני אוכל",
+        description: "צ'יפסר חשמלי מקצועי מתאים לדוכני אוכל באירועים, קייטנות, מתנ״סים ופעילויות קהילה. הוא מוסיף אוכל חם ופשוט להגשה שמשתלב היטב עם נקניקיות, המבורגר ופינות ישיבה.",
+        tags: ["אוכל חם", "ילדים", "מהיר"],
+        images: [32]
+      },
+      {
+        id: "chocolate-fountain",
+        category: "food-drinks",
+        subcategory: "sweets",
+        name: "מכונת מפל שוקולד",
+        tagline: "עמדת קינוח מרכזית למתחם מתוקים",
+        description: "מפל שוקולד מתאים לבר מתוקים, אירועי ילדים, ימי גיבוש ואירועים פרטיים. מוסיף עמדת קינוח ברורה שאפשר לשלב עם פנקייק, קרפ או פירות.",
+        tags: ["מתוקים", "קינוחים", "מקום סגור"],
+        images: [34]
+      },
+      {
+        id: "freezer",
+        category: "food-drinks",
+        subcategory: "summerDrinks",
+        name: "מכונת סנו קון מקצועית לאירועים",
+        tagline: "דוכן קרח צבעוני ומרענן לאירועי קיץ",
+        description: "מכונת סנו קון מקצועית לאירועים מייצרת קינוח קר, צבעוני ומרענן שמתאים לימי הולדת, קייטנות, ירידים ואירועי קהילה בקיץ.",
+        tags: ["סנו קון", "קיץ", "ילדים", "שתייה קרה"],
+        images: [36]
+      },
+      {
+        id: "cold-drinks",
+        category: "food-drinks",
+        subcategory: "summerDrinks",
+        name: "מכונת ברד",
+        tagline: "שתייה קרה בהגשה פשוטה לאירועי חוץ",
+        description: "מכונת ברד מתאימה לקבלת פנים, ימי קיץ, קייטנות ואירועי שטח. היא מוסיפה נקודת התרעננות מסודרת, צבעונית ונוחה לאורחים.",
+        tags: ["ברד", "קיץ", "שתייה קרה"],
+        images: [38]
+      },
+      {
+        id: "crepe-station",
+        category: "food-drinks",
+        subcategory: "sweets",
+        name: "עמדת קרפ צרפתי חם וטרי במקום!",
+        tagline: "קינוח חם שמוכן מול האורחים",
+        description: "עמדת קרפ צרפתי חם וטרי במקום מוסיפה לאירוע קינוח אישי ומפנק שמוכן מול האורחים. מתאים לימי הולדת, אירועי חברה, בר/בת מצווה ומתחמי מתוקים.",
+        tags: ["קרפ", "מתוקים", "חורף", "מקום סגור"],
+        images: [43]
+      },
+      {
+        id: "pancake-stand",
+        category: "food-drinks",
+        subcategory: "sweets",
+        name: "דוכן פנקייק",
+        tagline: "דוכן קינוח חם, מוכר ואהוב לילדים ולמשפחות",
+        description: "דוכן פנקייק מתאים לימי הולדת, אירועי חברה, קייטנות ומתחמי מתוקים. הוא מוסיף קינוח חם, פשוט להגשה ואהוב במיוחד על ילדים ונוער.",
+        tags: ["פנקייק", "מתוקים", "ילדים", "קינוח חם"],
+        images: [45]
+      },
+      {
+        id: "baked-snack-station",
+        category: "food-drinks",
+        subcategory: "sweets",
+        name: "מכונת וופל בלגי מקצועית",
+        tagline: "קינוח חם שמתאים במיוחד למקום סגור",
+        description: "מכונת וופל בלגי מקצועית מתאימה לאירועי חורף, מתנ״סים, ברי מתוקים ואירועים פרטיים. היא מוסיפה קינוח חם שקל להגיש לצד שוקו, פנקייק או קרפ.",
+        tags: ["חורף", "מתוקים", "מקום סגור"],
+        images: [41]
+      },
+      {
+        id: "challenge-table",
+        category: "wood-odt",
+        name: "משחקי שולחן ו-ODT",
+        tagline: "משחק מיומנות שמחבר דיוק, שליטה וריכוז",
+        description: "משחקי שולחן ו-ODT משלבים דיוק, שליטה, ריכוז, שיתוף פעולה ותחרות קלילה. מתאימים לילדים, נוער ומבוגרים, לימי גיבוש, אירועי חברה, מתנ״סים ופעילויות קהילה.",
+        tags: ["מיומנות", "גיבוש", "ODT", "מתאים לכל גיל"],
+        images: [4, 7, 8]
+      },
+      {
+        id: "lounge-zone",
+        category: "seating",
+        subcategory: "seating",
+        name: "פינות ישיבה",
+        tagline: "אזור מנוחה מסודר בתוך מתחם האירוע",
+        description: "פינות ישיבה מתאימות לאירועי חוץ, אירועי חברה, בתי ספר וקהילה. הן מוסיפות נוחות, סדר ואזור מפגש להורים, עובדים ואורחים בין הפעילויות.",
+        tags: ["פינות ישיבה", "חוץ", "אירוח"],
+        images: [40, 50]
+      },
+      {
+        id: "foam-effect",
+        category: "attractions",
+        name: "תותח קצף",
+        tagline: "אפקט קצף שמייצר רגע שיא מצטלם באירועי חוץ",
+        description: "תותח קצף מקצועי לאירועים מייצר מסיבת קצף שמחה, בולטת ומצטלמת. מתאים למסיבות קיץ, פעילויות חוץ, נוער ורחבות פתוחות.",
+        tags: ["קיץ", "קצף", "פעילות חוץ", "נוער"],
+        images: [47, 22]
+      },
+      {
+        id: "climate-equipment",
+        category: "food-drinks",
+        subcategory: "sweets",
+        name: "מכונת גלידה אמריקאית",
+        tagline: "דוכן גלידה קר, מוכר ואהוב לאירועי ילדים וקיץ",
+        description: "מכונת גלידה אמריקאית מתאימה לימי הולדת, קייטנות, אירועי קהילה ואירועי קיץ. היא מוסיפה לאירוע קינוח קר, נקי ומוכר שקל להגיש לקהל גדול.",
+        tags: ["גלידה", "קיץ", "ילדים", "קינוח"],
+        images: [14, 48]
+      }
+    ].map((product) => ({
+      ...product,
+      imageData: product.images.map(image),
+      searchText: [
+        product.name,
+        product.tagline,
+        product.description,
+        categoryLabels[product.category],
+        product.displayCategory || "",
+        product.subcategory ? subcategoryLabels[product.subcategory] : "",
+        product.extraSearch || "",
+        ...product.tags
+      ].join(" ").toLowerCase()
+    }));
+
+    const grid = document.querySelector("#grid");
+    const filters = document.querySelector("#filters");
+    const comboGrid = document.querySelector("#comboGrid");
+    const searchInput = document.querySelector("#searchInput");
+    const resultCount = document.querySelector("#resultCount");
+    const productCount = document.querySelector("#productCount");
+    const activeTitle = document.querySelector("#activeTitle");
+    const categoryCta = document.querySelector("#categoryCta");
+    const quickWhatsApp = document.querySelector("#quickWhatsApp");
+    const comboCta = document.querySelector("#comboCta");
+    const emptyState = document.querySelector("#emptyState");
+    const trayText = document.querySelector("#trayText");
+    const selectionFab = document.querySelector("#selectionFab");
+    const selectionTray = document.querySelector("#selectionTray");
+    const clearSelection = document.querySelector("#clearSelection");
+    const copyRequest = document.querySelector("#copyRequest");
     const leadModal = document.querySelector("#leadModal");
     const leadClose = document.querySelector("#leadClose");
     const leadIntro = document.querySelector("#leadIntro");
     const selectedList = document.querySelector("#selectedList");
     const leadForm = document.querySelector("#leadForm");
-    const clearSelection = document.querySelector("#clearSelection");
-    const toast = document.querySelector("#toast");
     const leadFields = {
       name: document.querySelector("#leadName"),
       phone: document.querySelector("#leadPhone"),
@@ -515,23 +1946,57 @@
       guests: document.querySelector("#leadGuests"),
       notes: document.querySelector("#leadNotes")
     };
+    const viewer = document.querySelector("#viewer");
+    const viewerTitle = document.querySelector("#viewerTitle");
+    const viewerImage = document.querySelector("#viewerImage");
+    const viewerMeta = document.querySelector("#viewerMeta");
+    const viewerDrive = document.querySelector("#viewerDrive");
+    const viewerSelect = document.querySelector("#viewerSelect");
+    const closeViewer = document.querySelector("#closeViewer");
+    const nextViewerImage = document.querySelector("#nextViewerImage");
+    const prevViewerImage = document.querySelector("#prevViewerImage");
+    const toast = document.querySelector("#toast");
+    const accessibilityToggle = document.querySelector("#accessibilityToggle");
+    const accessibilityPanel = document.querySelector("#accessibilityPanel");
+    const accessibilityModal = document.querySelector("#accessibilityModal");
+    const privacyModal = document.querySelector("#privacyModal");
 
-    let selectedCombos = new Set(JSON.parse(localStorage.getItem("catalogComboSelection") || "[]"));
+    let activeCategory = "all";
     let selectedProducts = new Set(JSON.parse(localStorage.getItem("catalogLeadSelection") || "[]"));
-    let selectedProductDetails = JSON.parse(localStorage.getItem("catalogSelectedProductDetails") || "[]");
+    let visibleProducts = [];
+    let activeProduct = null;
+    let activeViewerImage = 0;
+    let accessibilityState = JSON.parse(localStorage.getItem("catalogAccessibility") || "{}");
     let leadDraft = JSON.parse(localStorage.getItem("catalogLeadDraft") || "{}");
 
-    function selectedComboItems() {
-      return combos.filter((combo) => selectedCombos.has(combo.id));
+    const combos = [
+      { id: "kids-classic", title: "אירוע ילדים קלאסי", description: "פתרון שמח וברור לילדים עם פעילות מרכזית ודוכני נשנוש אהובים.", items: "ארנת ספורט מתנפחת + מכונת פופקורן + מכונת ברד" },
+      { id: "mitzvah-energy", title: "בר/בת מצווה אנרגטי", description: "חבילה צבעונית וקצבית לבני נוער, עם צילום, משחקים ורגעי שיא ברחבה.", items: "פעילות זוהרת / פול מון + עמדות מולטימדיה לאירועים + תותח קצף" },
+      { id: "community-event", title: "אירוע קהילה", description: "שילוב נוח לאירוע פתוח עם אוכל מהיר, אזור ישיבה ותחושת יריד קהילתי.", items: "מכונת נקניקיות + צ'יפסר חשמלי + פינות ישיבה" },
+      { id: "company-light", title: "אירוע חברה קליל", description: "מסלול חברתי ולא מחייב לעובדים, עם משחקים, אוכל ואווירה קלילה.", items: "משחקי שולחן ו-ODT + שולחן סנוקר + דוכן פיצות / פוקאצ'ות" },
+      { id: "sweet-zone", title: "מתחם מתוקים", description: "מתחם קינוחים חם ומצטלם שמתאים לקבלות פנים, ילדים ואירועי חברה.", items: "מכונת מפל שוקולד + מכונת וופל בלגי מקצועית + עמדת קרפ צרפתי" },
+      { id: "team-competition", title: "יום גיבוש תחרותי", description: "חבילה תחרותית ליום גיבוש עם עמדות משחק שמפעילות את הקהל.", items: "מכונת אגרוף ארקייד + שולחן כדורגל STORM + שולחן הוקי אויר" }
+    ];
+    let selectedCombos = new Set(JSON.parse(localStorage.getItem("catalogComboSelection") || "[]"));
+    selectedProducts = new Set([...selectedProducts].filter((id) => products.some((product) => product.id === id)));
+    selectedCombos = new Set([...selectedCombos].filter((id) => combos.some((combo) => combo.id === id)));
+    saveSelection();
+    saveComboSelection();
+
+    productCount.textContent = products.length;
+
+    function saveSelection() {
+      localStorage.setItem("catalogLeadSelection", JSON.stringify([...selectedProducts]));
+      localStorage.setItem("catalogSelectedProductDetails", JSON.stringify(selectedItems().map((product) => ({
+        id: product.id,
+        name: product.name,
+        category: product.displayCategory || categoryLabels[product.category],
+        tags: product.tags
+      }))));
     }
 
     function saveComboSelection() {
       localStorage.setItem("catalogComboSelection", JSON.stringify([...selectedCombos]));
-    }
-
-    function saveProductSelection() {
-      localStorage.setItem("catalogLeadSelection", JSON.stringify([...selectedProducts]));
-      localStorage.setItem("catalogSelectedProductDetails", JSON.stringify(selectedProductDetails));
     }
 
     function saveLeadDraft() {
@@ -559,30 +2024,60 @@
       showToast.timer = window.setTimeout(() => toast.classList.remove("show"), 2200);
     }
 
-    function renderPackages() {
-      packageGrid.replaceChildren(...combos.map((combo) => {
-        const selected = selectedCombos.has(combo.id);
-        const card = document.createElement("article");
-        card.className = "package";
-        card.innerHTML = `
-          <h2>${combo.title}</h2>
-          <p>${combo.description}</p>
-          <ul class="items">
-            ${combo.items.split(" + ").map((item) => `<li>${item}</li>`).join("")}
-          </ul>
-          <button class="${selected ? "selected" : ""}" type="button">${selected ? "נוסף ✓" : "לבקש שילוב כזה"}</button>
-        `;
-        card.querySelector("button").addEventListener("click", () => chooseCombo(combo.id));
-        return card;
-      }));
+    function applyAccessibility() {
+      document.body.classList.toggle("text-large", accessibilityState.text === "large");
+      document.body.classList.toggle("text-small", accessibilityState.text === "small");
+      document.body.classList.toggle("high-contrast", !!accessibilityState.contrast);
+      document.body.classList.toggle("grayscale", !!accessibilityState.grayscale);
+      document.body.classList.toggle("highlight-links", !!accessibilityState.links);
+      document.body.classList.toggle("reduce-motion", !!accessibilityState.motion);
+      localStorage.setItem("catalogAccessibility", JSON.stringify(accessibilityState));
+    }
+
+    function openPolicy(type) {
+      const modal = type === "privacy" ? privacyModal : accessibilityModal;
+      modal.classList.add("open");
+      modal.querySelector(".policy-close").focus();
+    }
+
+    function closePolicies() {
+      accessibilityModal.classList.remove("open");
+      privacyModal.classList.remove("open");
+    }
+
+    function categoryCtaLabel() {
+      return activeCategory === "all" ? "שלחו תאריך ומיקום" : "בדיקת זמינות לאירוע";
+    }
+
+    function selectedItems() {
+      return products.filter((product) => selectedProducts.has(product.id));
+    }
+
+    function selectedComboItems() {
+      return combos.filter((combo) => selectedCombos.has(combo.id));
+    }
+
+    function totalSelectedCount() {
+      return selectedProducts.size + selectedCombos.size;
     }
 
     function renderSelectedSummary() {
+      const selected = selectedItems();
       const selectedComboList = selectedComboItems();
-      if (!selectedComboList.length && !selectedProductDetails.length) {
-        selectedList.innerHTML = "<p>עדיין לא נבחרה חבילה או מוצר. אפשר לשלוח פרטים כלליים ונופר תחזור עם המלצה.</p>";
+      if (!selected.length && !selectedComboList.length) {
+        selectedList.innerHTML = "<p class=\"description\">עדיין לא נבחרו מוצרים או שילובים. אפשר לשלוח פרטים כלליים או להוסיף בחירה מהקטלוג.</p>";
         return;
       }
+      const productHtml = selected.map((product) => `
+        <article class="selected-item" data-product-id="${product.id}">
+          <div class="selected-item-details">
+            <strong>${product.name}</strong>
+            <span>קטגוריה: ${categoryLabels[product.category]}</span>
+            <span>תגיות / התאמה: ${product.tags.join(", ")}</span>
+          </div>
+          <button class="remove-choice" type="button" data-remove-product="${product.id}" aria-label="הסרת ${product.name} מהבחירות">הסרה</button>
+        </article>
+      `).join("");
       const comboHtml = selectedComboList.map((combo) => `
         <article class="selected-item" data-combo-id="${combo.id}">
           <div class="selected-item-details">
@@ -593,45 +2088,48 @@
           <button class="remove-choice" type="button" data-remove-combo="${combo.id}" aria-label="הסרת ${combo.title} מהבחירות">הסרה</button>
         </article>
       `).join("");
-      const productHtml = selectedProductDetails.map((product) => `
-        <article class="selected-item" data-product-id="${product.id}">
-          <div class="selected-item-details">
-            <strong>${product.name || product.id}</strong>
-            <span>קטגוריה: ${product.category || "מוצר מהקטלוג"}</span>
-            <span>תגיות / התאמה: ${(product.tags || []).join(", ")}</span>
-          </div>
-          <button class="remove-choice" type="button" data-remove-product="${product.id}" aria-label="הסרת ${product.name || product.id} מהבחירות">הסרה</button>
-        </article>
-      `).join("");
       selectedList.innerHTML = `${comboHtml}${productHtml}`;
     }
 
-    function openLeadModal(combo = null) {
+    function openLeadModal(product = null) {
       renderSelectedSummary();
-      leadIntro.textContent = combo
-        ? `בחרתם את: ${combo.title}. אפשר להוסיף פרטים ולשלוח בקשה ישירות לנופר הפקות.`
-        : "אפשר להוסיף פרטים ולשלוח בקשה ישירות לנופר הפקות.";
+      if (product) {
+        leadIntro.textContent = `בחרתם את: ${product.name}. אפשר להוסיף פרטים ולשלוח בקשה ישירות לנופר הפקות.`;
+      } else {
+        leadIntro.textContent = "אפשר להוסיף פרטים ולשלוח בקשה ישירות לנופר הפקות.";
+      }
       leadModal.classList.add("open");
       leadClose.focus();
     }
 
     function closeLeadModal() {
       leadModal.classList.remove("open");
-    }
-
-    function chooseCombo(comboId) {
-      const combo = combos.find((item) => item.id === comboId);
-      if (!combo) return;
-      selectedCombos.add(comboId);
-      saveComboSelection();
-      renderPackages();
-      showToast("החבילה נוספה לבחירות שלך");
-      openLeadModal(combo);
+      selectionFab.setAttribute("aria-expanded", "false");
     }
 
     function buildWhatsappMessage() {
-      const packageLines = selectedComboItems().map((combo) => `- ${combo.title}: ${combo.items}`);
-      const productLines = selectedProductDetails.map((product) => `- ${product.name || product.id}`);
+      const selected = selectedItems();
+      const selectedComboList = selectedComboItems();
+      const robotOnly = selected.length === 1 && selected[0].id === "robot-arm-artist" && selectedComboList.length === 0;
+      if (robotOnly) {
+        return [
+          "היי נופר הפקות,",
+          "אשמח לקבל פרטים והצעת מחיר עבור זרוע רובוטית מציירת לאירוע.",
+          "",
+          "פרטי האירוע:",
+          `שם: ${leadFields.name.value.trim()}`,
+          `טלפון: ${leadFields.phone.value.trim()}`,
+          `תאריך האירוע: ${leadFields.date.value.trim()}`,
+          `מיקום האירוע: ${leadFields.location.value.trim()}`,
+          `סוג האירוע: ${leadFields.type.value.trim()}`,
+          `כמות משתתפים: ${leadFields.guests.value.trim()}`,
+          "הערות נוספות:",
+          leadFields.notes.value.trim()
+        ].join("\n");
+      }
+
+      const packageLines = selectedComboList.map((combo) => `- ${combo.title}: ${combo.items}`);
+      const productLines = selected.map((product) => `- ${product.name}`);
       return [
         "שלום נופר הפקות,",
         "אשמח לקבל הצעת מחיר לאירוע.",
@@ -661,14 +2159,221 @@
       saveLeadDraft();
       const url = `https://wa.me/972506363577?text=${encodeURIComponent(buildWhatsappMessage())}`;
       window.open(url, "_blank", "noopener");
-      selectedCombos.clear();
       selectedProducts.clear();
-      selectedProductDetails = [];
+      selectedCombos.clear();
+      saveSelection();
       saveComboSelection();
-      saveProductSelection();
-      renderPackages();
+      renderSelection();
+      renderCombos();
+      render();
       closeLeadModal();
     }
+
+    function renderCombos() {
+      if (!comboGrid) return;
+      comboGrid.replaceChildren(...combos.map((combo) => {
+        const selected = selectedCombos.has(combo.id);
+        const card = document.createElement("article");
+        card.className = "combo";
+        card.innerHTML = `
+          <strong>${combo.title}</strong>
+          <span>${combo.description}</span>
+          <span>${combo.items}</span>
+          <button class="band-cta" type="button">${selected ? "נוסף ✓" : "לבקש שילוב כזה"}</button>
+        `;
+        card.querySelector("button").addEventListener("click", () => {
+          addComboSelection(combo.id);
+        });
+        return card;
+      }));
+    }
+
+    function addComboSelection(comboId) {
+      const combo = combos.find((item) => item.id === comboId);
+      if (!combo) return;
+      if (!selectedCombos.has(comboId)) {
+        selectedCombos.add(comboId);
+        showToast("השילוב נוסף לבחירות שלך");
+      } else {
+        showToast("החבילה כבר נמצאת בבחירות שלי");
+      }
+      saveComboSelection();
+      renderSelection();
+      renderCombos();
+    }
+
+    function filteredProducts() {
+      const query = searchInput.value.trim().toLowerCase();
+      return products.filter((product) => {
+        const categoryMatch = activeCategory === "all" || product.category === activeCategory;
+        const searchMatch = !query || product.searchText.includes(query);
+        return categoryMatch && searchMatch;
+      });
+    }
+
+    function renderFilters() {
+      filters.replaceChildren(...categories.map((category) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `chip ${activeCategory === category.id ? "active" : ""}`;
+        button.textContent = category.label;
+        button.addEventListener("click", () => {
+          activeCategory = category.id;
+          render();
+        });
+        return button;
+      }));
+    }
+
+    function currentImage(product) {
+      return product.imageData[product.activeImage || 0];
+    }
+
+    function moveProductImage(productId, delta) {
+      const product = products.find((item) => item.id === productId);
+      if (!product || product.imageData.length < 2) return;
+      product.activeImage = ((product.activeImage || 0) + delta + product.imageData.length) % product.imageData.length;
+      render();
+    }
+
+    function addSelection(productId) {
+      const product = products.find((item) => item.id === productId);
+      if (!product) return;
+      if (!selectedProducts.has(productId)) {
+        selectedProducts.add(productId);
+        showToast("נוסף לבחירות שלך");
+      } else {
+        showToast("המוצר כבר נמצא בבחירות שלי");
+      }
+      saveSelection();
+      renderSelection();
+      render();
+    }
+
+    function renderProductCard(product) {
+      const selected = selectedProducts.has(product.id);
+      const active = currentImage(product);
+      const card = document.createElement("article");
+      card.className = `product ${product.featured ? "featured" : ""}`;
+      card.dataset.productId = product.id;
+      card.innerHTML = `
+        <div class="media">
+          <span class="category-tag">${product.displayCategory || categoryLabels[product.category]}</span>
+          ${product.badges ? `<div class="flag-tags">${product.badges.map((badge, index) => `<span class="flag-tag ${index ? "gold" : ""}">${badge}</span>`).join("")}</div>` : ""}
+          <img class="product-image" src="${active.thumb}" alt="${product.name}" loading="lazy" referrerpolicy="no-referrer">
+          ${product.imageData.length > 1 ? `
+            <div class="carousel-controls">
+              <button type="button" data-action="next" aria-label="תמונה הבאה">›</button>
+              <button type="button" data-action="prev" aria-label="תמונה קודמת">‹</button>
+            </div>
+            <div class="dots" aria-hidden="true">
+              ${product.imageData.map((_, index) => `<span class="dot ${index === (product.activeImage || 0) ? "active" : ""}"></span>`).join("")}
+            </div>
+          ` : ""}
+        </div>
+        <div class="product-body">
+          <h3>${product.name}</h3>
+          <p class="tagline">${product.tagline}</p>
+          <p class="description">${product.description}</p>
+          <div class="meta">
+            ${product.tags.map((tag) => `<span class="pill">${tag}</span>`).join("")}
+          </div>
+          <div class="actions">
+            <button type="button" data-action="open">תצוגה</button>
+            <button class="quote ${selected ? "selected" : ""}" type="button" data-action="select">${selected ? "נוסף ✓" : "להוספה לאירוע"}</button>
+          </div>
+        </div>
+      `;
+
+      card.querySelector(".product-image").addEventListener("click", () => openViewer(product));
+      card.querySelector('[data-action="open"]').addEventListener("click", () => openViewer(product));
+      card.querySelector('[data-action="select"]').addEventListener("click", () => addSelection(product.id));
+
+      const next = card.querySelector('[data-action="next"]');
+      const prev = card.querySelector('[data-action="prev"]');
+      if (next) next.addEventListener("click", () => moveProductImage(product.id, 1));
+      if (prev) prev.addEventListener("click", () => moveProductImage(product.id, -1));
+
+      return card;
+    }
+
+    function renderSelection() {
+      const selected = products.filter((product) => selectedProducts.has(product.id));
+      const selectedComboList = selectedComboItems();
+      const count = totalSelectedCount();
+      if (!count) {
+        trayText.innerHTML = "<strong>עדיין לא בחרתם מוצרים.</strong> לחצו על 'להוספה לאירוע' כדי לבנות בקשה להצעת מחיר.";
+        selectionFab.textContent = "הבחירות שלי";
+        return;
+      }
+      const selectedNames = [
+        ...selectedComboList.map((combo) => `חבילה: ${combo.title}`),
+        ...selected.map((product) => product.name)
+      ];
+      trayText.innerHTML = `<strong>${count} בחירות לאירוע:</strong> ${selectedNames.join(", ")}`;
+      selectionFab.textContent = `הבחירות שלי (${count})`;
+    }
+
+    function render() {
+      renderFilters();
+      visibleProducts = filteredProducts();
+      grid.replaceChildren(...visibleProducts.map(renderProductCard));
+      resultCount.textContent = `${visibleProducts.length} מתוך ${products.length} מוצרים`;
+      activeTitle.textContent = categoryLabels[activeCategory] || "כל המוצרים";
+      categoryCta.textContent = categoryCtaLabel();
+      emptyState.style.display = visibleProducts.length ? "none" : "block";
+      renderSelection();
+    }
+
+    function openViewer(product) {
+      activeProduct = product;
+      activeViewerImage = product.activeImage || 0;
+      updateViewer();
+      viewer.classList.add("open");
+      closeViewer.focus();
+    }
+
+    function updateViewer() {
+      if (!activeProduct) return;
+      const item = activeProduct.imageData[activeViewerImage];
+      viewerTitle.textContent = activeProduct.name;
+      viewerImage.src = item.large;
+      viewerImage.alt = activeProduct.name;
+      viewerDrive.href = item.drive;
+      viewerMeta.textContent = `${categoryLabels[activeProduct.category]}${activeProduct.subcategory ? ` · ${subcategoryLabels[activeProduct.subcategory]}` : ""} · תמונה ${activeViewerImage + 1} מתוך ${activeProduct.imageData.length} · מקור #${String(item.number).padStart(2, "0")}`;
+      viewerSelect.textContent = selectedProducts.has(activeProduct.id) ? "נוסף ✓" : "להוספה לאירוע";
+    }
+
+    function moveViewer(delta) {
+      if (!activeProduct) return;
+      activeViewerImage = (activeViewerImage + delta + activeProduct.imageData.length) % activeProduct.imageData.length;
+      updateViewer();
+    }
+
+    searchInput.addEventListener("input", render);
+
+    clearSelection.addEventListener("click", () => {
+      selectedProducts.clear();
+      selectedCombos.clear();
+      saveSelection();
+      saveComboSelection();
+      selectionTray.classList.remove("open");
+      selectionFab.setAttribute("aria-expanded", "false");
+      renderSelectedSummary();
+      renderSelection();
+      renderCombos();
+      render();
+      showToast("הרשימה נוקתה");
+    });
+
+    selectionFab.addEventListener("click", () => {
+      openLeadModal();
+      selectionFab.setAttribute("aria-expanded", "true");
+    });
+
+    copyRequest.addEventListener("click", () => {
+      openLeadModal();
+    });
 
     leadForm.addEventListener("input", saveLeadDraft);
     leadForm.addEventListener("submit", (event) => {
@@ -682,40 +2387,102 @@
     });
 
     selectedList.addEventListener("click", (event) => {
-      const comboId = event.target?.dataset?.removeCombo;
       const productId = event.target?.dataset?.removeProduct;
-      if (!comboId && !productId) return;
+      const comboId = event.target?.dataset?.removeCombo;
+      if (!productId && !comboId) return;
+      if (productId) {
+        selectedProducts.delete(productId);
+        saveSelection();
+      }
       if (comboId) {
         selectedCombos.delete(comboId);
         saveComboSelection();
+        renderCombos();
       }
-      if (productId) {
-        selectedProducts.delete(productId);
-        selectedProductDetails = selectedProductDetails.filter((product) => product.id !== productId);
-        saveProductSelection();
-      }
-      renderPackages();
       renderSelectedSummary();
+      renderSelection();
+      render();
       showToast("הפריט הוסר מהבחירות");
     });
 
-    clearSelection.addEventListener("click", () => {
-      selectedCombos.clear();
-      selectedProducts.clear();
-      selectedProductDetails = [];
-      saveComboSelection();
-      saveProductSelection();
-      renderPackages();
-      renderSelectedSummary();
-      showToast("הרשימה נוקתה");
+    quickWhatsApp.addEventListener("click", () => {
+      showToast("בחרו מוצרים ואז פתחו את הבחירות שלי");
+    });
+
+    comboCta?.addEventListener("click", () => {
+      showToast("בחרו מוצרים ואז פתחו את הבחירות שלי");
+    });
+
+    categoryCta.addEventListener("click", () => {
+      showToast("בחרו מוצרים ואז פתחו את הבחירות שלי");
+    });
+
+    document.querySelectorAll("[data-policy]").forEach((button) => {
+      button.addEventListener("click", () => openPolicy(button.dataset.policy));
+    });
+
+    document.querySelectorAll("[data-close-policy]").forEach((button) => {
+      button.addEventListener("click", closePolicies);
+    });
+
+    [accessibilityModal, privacyModal].forEach((modal) => {
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) closePolicies();
+      });
+    });
+
+    accessibilityToggle.addEventListener("click", () => {
+      const isOpen = accessibilityPanel.classList.toggle("open");
+      accessibilityToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    accessibilityPanel.addEventListener("click", (event) => {
+      const action = event.target?.dataset?.a11y;
+      if (!action) return;
+      if (action === "larger") accessibilityState.text = "large";
+      if (action === "smaller") accessibilityState.text = "small";
+      if (action === "contrast") accessibilityState.contrast = !accessibilityState.contrast;
+      if (action === "grayscale") accessibilityState.grayscale = !accessibilityState.grayscale;
+      if (action === "links") accessibilityState.links = !accessibilityState.links;
+      if (action === "motion") accessibilityState.motion = !accessibilityState.motion;
+      if (action === "reset") accessibilityState = {};
+      applyAccessibility();
+    });
+
+    viewerSelect.addEventListener("click", () => {
+      if (!activeProduct) return;
+      addSelection(activeProduct.id);
+      updateViewer();
+    });
+    closeViewer.addEventListener("click", () => viewer.classList.remove("open"));
+    nextViewerImage.addEventListener("click", () => moveViewer(1));
+    prevViewerImage.addEventListener("click", () => moveViewer(-1));
+    viewer.addEventListener("click", (event) => {
+      if (event.target === viewer) viewer.classList.remove("open");
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeLeadModal();
+      if (!viewer.classList.contains("open")) return;
+      if (event.key === "Escape") viewer.classList.remove("open");
+      if (event.key === "ArrowLeft") moveViewer(1);
+      if (event.key === "ArrowRight") moveViewer(-1);
     });
 
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closePolicies();
+        closeLeadModal();
+        selectionTray.classList.remove("open");
+        selectionFab.setAttribute("aria-expanded", "false");
+        accessibilityPanel.classList.remove("open");
+        accessibilityToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    applyAccessibility();
     restoreLeadDraft();
-    renderPackages();
+    renderCombos();
+    render();
   </script>
 </body>
 </html>
